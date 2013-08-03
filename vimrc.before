@@ -1,0 +1,14 @@
+" vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+"
+" Author: "Gebhard Woestemeyer" <g.woestemeyer@gmail.com>
+"
+" Additions to the janus vim distribution.
+
+" let mapleader = ","
+
+" use T-Comment instead
+" call janus#disable_plugin('nerdcommenter')
+
+" vim-github-comment {{{
+    let g:github_user = $USER
+" }}}

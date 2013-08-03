@@ -1,0 +1,177 @@
+" Modeline and Notes {{{
+" vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+"
+" Author: "Gebhard Woestemeyer" <g.woestemeyer@gmail.com>
+"
+" Additions to the janus vim distribution.
+"
+" Add additional plugins to `~/.janus/`:
+"   mkdir -p ~/.janus
+"   cd ~/.janus
+"   git clone git://github.com/Lokaltog/vim-powerline.git
+"   git clone git://github.com/airblade/vim-gitgutter.git
+"   git clone git@github.com:ck3g/vim-change-hash-syntax.git
+"   git clone git@github.com:mmozuras/vim-github-comment.git
+"   git clone git@github.com:nathanaelkane/vim-indent-guides.git
+"   git clone git@github.com:godlygeek/tabular.git
+" }}}
+
+" Appearance {{{
+  set cursorline " Highlight current line
+  set showmode
+  set scrolloff=3
+
+  " Colorscheme {{{
+    " set background=dark
+    color jellybeans
+    " let g:solarized_degrade=1 " gray background
+    " solarized twilight wombat256mod ir_dark
+  " }}}
+
+  " Fancy colorcolumn {{{
+    execute "set colorcolumn=" . join(range(81,335), ',')
+    " hi ColorColumn guibg=#2d2d2d ctermbg=233
+  " }}}
+
+  " Fancy Powerline-Statusline {{{
+    if has('statusline')
+      set laststatus=2
+      let g:Powerline_symbols = 'unicode'
+    endif
+  " }}}
+
+  " GUI options {{{
+    if has("gui_running")
+      set guioptions-=r " remove right scrollbar
+      set guioptions-=L " remove left scrollbar
+      set guioptions-=e " remove GUI Tab-Bar
+      set guioptions-=T " no toolbar
+      set guioptions-=m " no menu
+      set guioptions+=c " console dialogs
+      " set guioptions+=a " autoselect
+
+      if has('gui_macvim')
+        set transparency=0
+        set guifont=Menlo\ Regular:h12
+      endif
+    endif
+  " }}}
+" }}}
+
+" Options {{{
+  set hidden
+" }}}
+
+" Mappings {{{
+  " Map ESC to jj and jk
+  imap jj <ESC>
+  imap jk <ESC>
+
+  " Format entire file and return to current cursor pos
+  nmap === ggVG=2<C-o>zz
+
+  " j, k go up/down to next row. Cursor keys (ugh!) go up/down a line in the
+  " file.
+  nnoremap j gj
+  nnoremap k gk
+  nnoremap <Down> j
+  nnoremap <Up> k
+
+  " Easier window movements
+  map <C-J> <C-W>j<C-W>_
+  map <C-K> <C-W>k<C-W>_
+  map <C-L> <C-W>l<C-W>_
+  map <C-H> <C-W>h<C-W>_
+
+  " // toggles comments
+  map // <Leader>c<Space>
+
+  " Clear highlighted search
+  nmap <silent> <leader><Space> :nohlsearch<CR>
+
+  " Yank from the cursor to the end of the line, to be consistent with C and D.
+  nnoremap Y y$
+
+  " Easy saving in terminal
+  imap <C-s> <Esc>:w<Enter>a
+  nmap <C-s> <Esc>:w<Enter>
+
+  " Delete all buffers
+  nmap <leader>D :bufdo bd<CR>
+
+  " Delete current buffer but keep the window open
+  " (http://vim.wikia.com/wiki/Deleting_a_buffer_without_closing_the_window)
+  nmap <leader>d <Plug>Kwbd
+
+  " Generate ctags
+  nmap <leader>ct :!ctags -R<CR>
+
+  " Useful Arrow Keys
+  " (http://codingfearlessly.com/2012/08/21/vim-putting-arrows-to-use/)
+  " nmap <Left> <<
+  " nmap <Right> >>
+  vmap <Left> <gv
+  vmap <Right> >gv
+  " nmap <Up> [e
+  " nmap <Down> ]e
+  vmap <Up> [egv
+  vmap <Down> ]egv
+" }}}
+
+" Plugins {{{
+  " GitGutter {{{
+    nmap <leader>gg :GitGutterToggle<CR>
+    hi clear SignColumn
+  " }}}
+
+  " Syntastic {{{
+    let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+  " }}}
+
+  " Vimux {{{
+    let g:vroom_use_vimux=1
+    let vroom_spec_command='rspec -f documentation'
+  " }}}
+
+  " NERDCommenter {{{
+    let NERDSpaceDelims=1 " Whitespace around comments
+  " }}}
+
+  " NERDTree {{{
+    " Only chdir when root dir is changed
+    let NERDTreeChDirMode=2
+    nmap <leader>nt :NERDTreeFind<CR>
+    " let NERDTreeQuitOnOpen=0
+  " }}}
+
+  " ChangeHashSyntax {{{
+    map <leader>h :ChangeHashSyntax<CR>
+  " }}}
+
+  " Tabular {{{
+  if exists(":Tabularize")
+    nmap <leader>a= :Tabularize /=<CR>
+    vmap <leader>a= :Tabularize /=<CR>
+    nmap <leader>a: :Tabularize /:\zs<CR>
+    vmap <leader>a: :Tabularize /:\zs<CR>
+    nmap <leader>a> :Tabularize /=><CR>
+    vmap <leader>a> :Tabularize /=><CR>
+  endif
+" }}}
+
+" Functions {{{
+  " Automatically remove trailing whitespace {{{
+    fun! StripTrailingWhitespace()
+      let l = line(".")
+      let c = col(".")
+      %s/\s\+$//e
+      call cursor(l, c)
+    endfun
+    autocmd FileType c,cpp,java,php,ruby,python,html,haml
+          \ autocmd BufWritePre <buffer> :call StripTrailingWhitespace()
+
+    " use StripTrailingWhitespace() instead of the one provided by janus
+    command! KillWhitespace call StripTrailingWhitespace()
+    nmap <leader>kw :KillWhitespace<CR>
+  " }}}
+" }}}
