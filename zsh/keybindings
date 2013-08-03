@@ -1,0 +1,17 @@
+# Vi Keybindings regardless of $EDITOR
+bindkey -v
+
+# search backward in history
+bindkey -M viins '^r' history-incremental-search-backward
+bindkey -M vicmd '^r' history-incremental-search-backward
+
+# ctrl-p/n
+bindkey -M viins '^p' history-search-backward
+bindkey -M viins '^n' history-search-forward
+
+# use jj/jk instead of esc
+bindkey -M viins 'jj'  vi-cmd-mode
+bindkey -M viins 'jk'  vi-cmd-mode
+
+# chdir to the parent directory
+bindkey -M viins -s '^k' '^Ucd ..^M' # ; ls^M'

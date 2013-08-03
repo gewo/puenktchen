@@ -1,0 +1,16 @@
+# vim: ft=zsh
+
+local git_info_cmd=''
+if [ -x $(whence git-cwd-info) ]; then
+  git_info_cmd=$(whence git-cwd-info)
+fi
+
+local rvm_prompt_cmd=''
+if [ -x $(whence rvm-prompt) ]; then
+  rvm_prompt_cmd=$(whence rvm-prompt)
+fi
+
+local smiley="%(?,%{$fg[green]%}:)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
+
+PROMPT='%~ ${smiley} %{$reset_color%}'
+RPROMPT=' %{$fg[white]%} $($rvm_prompt_cmd)$($git_info_cmd)%{$reset_color%}'

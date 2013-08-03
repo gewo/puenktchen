@@ -1,0 +1,13 @@
+# vim: ft=zsh
+# extracted from the oh-my-zsh web_search plugin.
+
+function open_cmd() {
+  local open_cmd
+  if [[ $(ostype) == 'Darwin' ]]; then
+    open_cmd='open'
+  else
+    open_cmd='xdg-open'
+    # python -mwebbrowser
+  fi
+  echo $open_cmd
+}

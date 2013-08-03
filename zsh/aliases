@@ -1,0 +1,118 @@
+# vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+
+# Base {{{
+  # ls {{{
+    alias ls='ls -h'
+    if [[ $(ostype) == "Linux" ]] ; then alias ls='ls -h --color' ; fi
+    alias l='ls'
+    alias la='l -a'
+    alias ll='l -lF'
+    alias lla='ll -a'
+    alias lss='ll -rS' # sort by size
+    alias lst='ll -rt' # sort by time
+    alias lh='la -d .??*' # show only hidden files
+    alias llh='lla -d .??*'
+  # }}}
+
+  alias grep='grep --color'
+  alias psg='ps aux | grep'
+  alias ka='killall'
+  alias k='kill'
+
+  alias _='sudo'
+
+  # Copy with progress bar. `-o` requires superuser.
+  alias cpv="rsync -pghb -e /dev/null --progress --"
+# }}}
+
+# System {{{
+  if [[ $(ostype) == "Linux" ]] ; then
+    alias ash='apt-cache show'
+    alias acs='apt-cache search'
+  fi
+# }}}
+
+# Misc {{{
+  # alias s='screen -U' # -d -R -S
+
+  alias t='tmux -2'
+  alias tc='tmux new -t0'
+
+  alias vim="stty stop '' -ixoff ; vim"
+  alias v='vim'
+# }}}
+
+# Suffix aliases {{{
+  alias -s html='$(open_cmd)'
+  alias -s txt='$EDITOR'
+  alias -s rb='$EDITOR'
+# }}}
+
+# Global aliases {{{
+  alias -g D='| colordiff'
+  alias -g L='| less -R'
+  alias -g DL='D L'
+  alias -g GG='| grep -v grep'
+  alias -g G='| grep -n'
+# }}}
+
+# Ruby and Rails {{{
+  alias ri='ri -f ansi'
+  alias b='bundle'
+  alias be='b exec'
+  alias bi='b install' # --binstubs
+  alias bu='b update'
+  alias r='be rails'
+  alias rs='be rspec -f documentation'
+
+  alias z='zeus'
+  alias zt='z test'
+  alias zr='z rake'
+  alias zs='z s'
+  alias zc='z c'
+# }}}
+
+# Git {{{
+  alias g='git'
+  alias gst='g status -sb'
+  alias gsti='g status --ignored'
+  alias ga='g add'
+  alias gc='g commit'
+  alias gcn='gc --no-verify'
+  alias gcm='gc -m'
+  alias gco='g checkout'
+  alias gds='g diff --staged'
+  alias gd='g diff'
+  alias gp='g pull'
+  alias gpu='g push'
+  alias gpo='gpu -u origin $(git-current-branch)'
+  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+  alias gb='g branch'
+  alias gbd='gb --merged | grep -v "^\*" | xargs git branch -d'
+  alias gfp='g fetch -p'
+  alias gba='gb -av'
+  alias gpr='hub pull-request'
+  alias gsl='g stash list'
+  alias gsp='g stash pop'
+  alias gsa='g stash apply'
+  alias gm='g merge'
+# }}}
+
+# Capistrano {{{
+  alias c='be cap'
+  alias cpd='c production deploy'
+  alias cpc='c production rails:console'
+  alias cpl='c production logs'
+  alias csd='c staging deploy'
+  alias csc='c staging rails:console'
+  alias csl='c staging logs'
+# }}}
+
+# Heroku {{{
+  alias h='heroku'
+  alias hp='h pgbackups'
+  alias hpc='h pgbackups:capture -e'
+  alias hpu='h pgbackups:url'
+  alias hc='h run rails c'
+  alias hl='h logs -t'
+# }}}

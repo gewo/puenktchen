@@ -1,0 +1,11 @@
+# vim: ft=zsh
+# Get the OS type.
+#
+# Same format as `$(uname)`, but using $OSTYPE.
+function ostype() {
+  case "$OSTYPE" in
+    darwin*) print "Darwin"  ;;
+    linux*)  print "Linux"   ;;
+    *)       print "Unknown" ;;
+  esac
+}

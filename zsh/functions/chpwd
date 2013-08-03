@@ -1,0 +1,6 @@
+# vim: ft=zsh
+# auto-source .env files in current directory
+# inspired by: stackoverflow.com/questions/171563/172500#172500
+function chpwd() {
+  [ -f './.env' ] && source './.env'
+}
