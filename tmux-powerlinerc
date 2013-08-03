@@ -1,0 +1,22 @@
+# configuration file for tmux-powerline.
+# Modeline {
+#  vi: foldmarker={,} foldmethod=marker foldlevel=0 filetype=sh
+# }
+
+# General {
+	export TMUX_POWERLINE_PATCHED_FONT_IN_USE="true"
+	export TMUX_POWERLINE_THEME="gewo"
+	export TMUX_POWERLINE_DIR_USER_THEMES="$HOME/.tmux/powerline/themes"
+# }
+
+# now_playing.sh {
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_MUSIC_PLAYER="cmus"
+	export TMUX_POWERLINE_SEG_NOW_PLAYING_MAX_LEN="40"
+# }
+
+# weather.sh {
+  BERLIN="638242"
+  JENA="664055"
+  ZUERICH="784794"
+	export TMUX_POWERLINE_SEG_WEATHER_LOCATION="$BERLIN"
+# }
