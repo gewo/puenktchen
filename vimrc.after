@@ -106,6 +106,9 @@
   " nmap <Down> ]e
   vmap <Up> [egv
   vmap <Down> ]egv
+
+  " insert new line without entering insert mode.
+  nmap <CR> o<Esc>
 " }}}
 
 " Plugins {{{
