@@ -4,16 +4,6 @@
 " Author: "Gebhard Woestemeyer" <g.woestemeyer@gmail.com>
 "
 " Additions to the janus vim distribution.
-"
-" Add additional plugins to `~/.janus/`:
-"   mkdir -p ~/.janus
-"   cd ~/.janus
-"   git clone git://github.com/Lokaltog/vim-powerline.git
-"   git clone git://github.com/airblade/vim-gitgutter.git
-"   git clone git@github.com:ck3g/vim-change-hash-syntax.git
-"   git clone git@github.com:mmozuras/vim-github-comment.git
-"   git clone git@github.com:nathanaelkane/vim-indent-guides.git
-"   git clone git@github.com:godlygeek/tabular.git
 " }}}
 
 " Appearance {{{
