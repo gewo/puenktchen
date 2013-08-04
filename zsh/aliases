@@ -29,6 +29,7 @@
   if [[ $(ostype) == "Linux" ]] ; then
     alias ash='apt-cache show'
     alias acs='apt-cache search'
+    alias ai='_ apt-get install'
   fi
 # }}}
 
