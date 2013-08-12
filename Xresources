@@ -1,0 +1,91 @@
+! vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+
+! Xft {{{
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hinstyle: hintslight
+! }}}
+
+! rxvt {{{
+! General {{{
+URxvt.termName: rxvt-unicode-256color
+URxvt.loginShell: true
+URxvt.depth: 32
+URxvt.scrollBar: false
+URxvt.transparent: false
+URxvt.cursorBlink: false
+URxvt.scrollTtyOutput: false
+URxvt.scrollTtyKeypress: true
+URxvt.scrollWithBuffer: true
+URxvt.iso14755: true
+URxvt.iso14755_52: false
+URxvt*saveLines: 50000
+! }}}
+
+! Fonts {{{
+URxvt.font: xft:DejaVu Sans Mono:book:size=9
+URxvt.imFont:xft:DejaVu Sans Mono:book:size=9
+URxvt.boldFont:xft:DejaVu Sans Mono:bold:size=9
+URxvt.italicFont:xft:DejaVu Sans Mono:oblique:size=9
+URxvt.boldItalicFont:xft:DejaVu Sans Mono:oblique:italic:size=9
+URxvt.cursorColor: grey
+URxvt.letterSpace: -2
+! }}}
+
+! Jellybeans Colors {{{
+URxvt.background: #151515
+URxvt.foreground: #ffffff
+! black
+URxvt.color0: #888888
+URxvt.color8: #525252
+! red
+URxvt.color1: #cf6a4c
+URxvt.color9: #ff9d80
+! green
+URxvt.color2: #99ad6a
+URxvt.color10: #c3e6ad
+! yellow
+URxvt.color3: #fad07a
+URxvt.color11: #ffefbf
+! blue
+URxvt.color4: #8197bf
+URxvt.color12: #accaff
+! magenta
+URxvt.color5: #8787af
+URxvt.color13: #c4c4ff
+! cyan
+URxvt.color6: #8fbfdc
+URxvt.color14: #80bfaf
+! white
+URxvt.color7: #888888
+URxvt.color15: #e8e8d3
+
+URxvt.colorBD: #99ad6a
+URxvt.colorIT: #fad07a
+URxvt.colorUL: #cf6a4c
+! }}}
+
+! Perl Extensions {{{
+! URxvt.perl-lib: ~/.urxvt/ext
+URxvt.perl-ext-common: default,url-select,clipboard,keyboard-select
+
+! url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.button: 2
+URxvt.url-select.launcher: firefox -new-tab
+URxvt.url-select.autocopy: true
+URxvt.url-select.underline: true
+
+! keyboard-select
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+
+! clipboard
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.clipboard.autocopy: true
+! }}}
+! }}}

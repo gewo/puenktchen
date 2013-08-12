@@ -13,6 +13,8 @@
   fi
 # }}}
 
+xrdb -merge ~/.Xresources
+
 eval $(ssh-agent -s)
 
 xscreensaver -no-splash &
