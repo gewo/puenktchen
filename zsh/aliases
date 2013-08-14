@@ -10,8 +10,8 @@
     alias lla='ll -a'
     alias lss='ll -rS' # sort by size
     alias lst='ll -rt' # sort by time
-    alias lh='la -d .??*' # show only hidden files
-    alias llh='lla -d .??*'
+    alias lh='la -d .*' # show only hidden files
+    alias llh='lla -d .*'
   # }}}
 
   alias grep='grep --color'
@@ -36,7 +36,7 @@
 # Misc {{{
   # alias s='screen -U' # -d -R -S
 
-  alias t='tmux -2'
+  alias tm='tmux -2'
   alias tc='tmux new -t0'
 
   alias vim="stty stop '' -ixoff ; vim"
