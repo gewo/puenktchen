@@ -22,6 +22,7 @@
   export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH
 
   [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+  [ -r $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
 
   # `Freeze' tty, so after any command terminal settings will be restored
   # used for passing C-s to vim, but have normal C-s otherwise.
