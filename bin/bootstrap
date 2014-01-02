@@ -1,0 +1,65 @@
+#!/usr/bin/env bash
+DOTPATH=$HOME/.dotfiles
+
+# TODO: check for Command Line Tools on OSX
+# @see http://stackoverflow.com/a/19899984
+# xcode-select --install
+
+install_linux_dependencies() {
+  if [ -x $(which apt-get) ]; then
+    sudo apt-get update -y
+    sudo apt-get install -y git rubygems rake zsh curl
+  fi
+}
+
+install_dependencies() {
+  case "$OSTYPE" in
+    darwin*) ;;
+    linux*)  install_linux_dependencies ;;
+  esac
+}
+
+# Install dotfiles
+install_dotfiles() {
+  git clone https://github.com/gewo/puenktchen.git $DOTPATH
+  if ! gem list -i -d briefcase; then
+    sudo gem install briefcase
+  fi
+  briefcase sync
+}
+
+# Install the janus vim distribution (https://github.com/carlhuda/janus/)
+install_janus() {
+  curl -Lo- https://bit.ly/janus-bootstrap | bash
+}
+
+set_login_shell() {
+  sudo chsh -s $(which zsh) $USER
+}
+
+configure_osx() {
+  local bspath=$DOTPATH/bootstrap
+  local -a files=(homebrew cask osx)
+  for file in $files; do
+    [ -f "$bspath/$file" ] && source "$bspath/$file"
+  done
+}
+
+configure_linux() {
+  local bspath=$DOTPATH/bootstrap
+  [ -f "$bspath/apt" ] && source "$bspath/apt"
+  [ -f "$bspath/docker" ] && source "$bspath/docker"
+}
+
+configure() {
+  case "$OSTYPE" in
+    darwin*) configure_osx ;;
+    linux*) configure_linux ;;
+  esac
+}
+
+install_dependencies
+install_dotfiles
+install_janus
+configure
+set_login_shell

@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+install_apt() {
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+  -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' $@
+}
+
+packages='
+  curl
+  ack-grep
+  build-essential
+  cmake
+  doxygen
+  exuberant-ctags
+  awesome
+  awesome-extra
+  xsel
+  openssh-server
+  autossh
+  vim-nox
+  mutt-patched
+  urlview
+  tmux
+  firefox
+  virtualbox
+'
+
+sudo apt-get update
+install_apt $packages

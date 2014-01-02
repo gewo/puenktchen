@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Install docker
+curl -sL https://get.docker.io/ | sudo sh
+sudo adduser $USER docker
