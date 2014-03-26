@@ -94,7 +94,8 @@
   nmap <leader>d <Plug>Kwbd
 
   " Generate ctags
-  nmap <leader>ct :!ctags --extra=+f --languages=-javascript --exclude=.git --exclude=log -R . $(rvm gemdir)/gems/<CR>
+  " nmap <leader>ct :!ctags --extra=+f --languages=-javascript --exclude=.git --exclude=log -R . $(rvm gemdir)/gems/<CR>
+  nmap <leader>ct :!ctags --extra=+f --languages=-javascript --exclude=.git --exclude=log -R .<CR>
 
   " Useful Arrow Keys
   " (http://codingfearlessly.com/2012/08/21/vim-putting-arrows-to-use/)

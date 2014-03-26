@@ -30,14 +30,15 @@
     alias ash='apt-cache show'
     alias acs='apt-cache search'
     alias ai='_ apt-get install'
+    alias au='_ apt-get update'
+    alias adu='_ apt-get dist-upgrade'
   fi
 # }}}
 
 # Misc {{{
   # alias s='screen -U' # -d -R -S
 
-  alias tm='tmux -2'
-  alias tc='tmux new -t0'
+  alias tc='tmux new -t dev'
 
   alias vim="stty stop '' -ixoff ; vim"
   alias v='vim'
@@ -108,6 +109,17 @@
   alias csd='c staging deploy'
   alias csc='c staging rails:console'
   alias csl='c staging logs'
+# }}}
+
+# Docker {{{
+  alias d='docker'
+  alias dp='d port'
+  alias dps='d ps'
+  alias dpa='d ps -a'
+  alias di='d images'
+  alias dka='docker kill $(dpa -q)'
+  alias drma='d rm $(dpa -q)'
+  alias drmia='d rmi $(di -q)'
 # }}}
 
 # Heroku {{{

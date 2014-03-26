@@ -17,6 +17,7 @@
   PATH=$HOME/.local/bin:$PATH
   PATH=/usr/local/sbin:/usr/local/bin:$PATH
   PATH=$PATH:$HOME/.rvm/bin
+  PATH=$HOME/dev/living-in-a-box/bin:$PATH
   export PATH
 
   export NODE_PATH=/usr/local/lib/node_modules:$NODE_PATH

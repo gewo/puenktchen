@@ -16,14 +16,24 @@ packages='
   awesome-extra
   xsel
   openssh-server
+  gnupg
+  nmap
   autossh
   vim-nox
   mutt-patched
+  enscript
   urlview
   tmux
+  scrot
   firefox
-  virtualbox
+  virtualbox-4.3
 '
+
+# add virtualbox repo
+wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | \
+  sudo apt-key add -
+echo 'deb http://download.virtualbox.org/virtualbox/debian saucy contrib' \
+  | sudo tee /etc/apt/sources.list.d/virtualbox.list
 
 sudo apt-get update
 install_apt $packages
