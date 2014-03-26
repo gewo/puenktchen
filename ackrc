@@ -1,0 +1,5 @@
+--ignore-dir=.git
+--ignore-dir=vendor
+--ignore-dir=coverage
+--ignore-dir=log
+--ignore-file=is:ctags
