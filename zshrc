@@ -24,6 +24,7 @@
 
   [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
   [ -r $HOME/.rvm/scripts/rvm ] && source $HOME/.rvm/scripts/rvm
+  [ -r $(brew --prefix nvm)/nvm.sh ] && source $(brew --prefix nvm)/nvm.sh
 
   # `Freeze' tty, so after any command terminal settings will be restored
   # used for passing C-s to vim, but have normal C-s otherwise.

@@ -82,6 +82,7 @@
   alias gc='g commit'
   alias gcn='gc --no-verify'
   alias gcm='gc -m'
+  alias gca='gc --amend'
   alias gco='g checkout'
   alias gds='g diff --staged'
   alias gd='g diff'

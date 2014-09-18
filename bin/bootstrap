@@ -60,6 +60,6 @@ configure() {
 
 install_dependencies
 install_dotfiles
-install_janus
 configure
+install_janus
 set_login_shell

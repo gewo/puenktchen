@@ -20,3 +20,4 @@ installcask tunnelblick
 installcask xquartz
 installcask vagrant
 installcask flash
+installcask gpgtools
