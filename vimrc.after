@@ -12,22 +12,15 @@
   set scrolloff=3
 
   " Colorscheme {{{
-    " set background=dark
+    set background=dark
     color jellybeans
     " let g:solarized_degrade=1 " gray background
-    " solarized twilight wombat256mod ir_dark
+    " solarized twilight wombat256mod ir_dark sorcerer
   " }}}
 
   " Fancy colorcolumn {{{
     execute "set colorcolumn=" . join(range(81,335), ',')
     " hi ColorColumn guibg=#2d2d2d ctermbg=233
-  " }}}
-
-  " Fancy Powerline-Statusline {{{
-    if has('statusline')
-      set laststatus=2
-      let g:Powerline_symbols = 'unicode'
-    endif
   " }}}
 
   " GUI options {{{
@@ -50,9 +43,19 @@
 
 " Options {{{
   set hidden
+
+  set ssop-=options " do not store global and local values in a session
+  set ssop-=folds   " do not store folds
+
+  if $TMUX == ''
+    set clipboard+=unnamed
+  endif
 " }}}
 
 " Mappings {{{
+  " Map <leader> to <space>
+  map <space> <leader>
+
   " Map ESC to jj and jk
   imap jj <ESC>
   imap jk <ESC>
@@ -94,8 +97,7 @@
   nmap <leader>d <Plug>Kwbd
 
   " Generate ctags
-  " nmap <leader>ct :!ctags --extra=+f --languages=-javascript --exclude=.git --exclude=log -R . $(rvm gemdir)/gems/<CR>
-  nmap <leader>ct :!ctags --extra=+f --languages=-javascript --exclude=.git --exclude=log -R .<CR>
+  nmap <leader>ct :!unset TMUX ; tmux new -d "cd $(pwd) && ctags -R ."<CR>
 
   " Useful Arrow Keys
   " (http://codingfearlessly.com/2012/08/21/vim-putting-arrows-to-use/)
@@ -110,9 +112,20 @@
 
   " insert new line without entering insert mode.
   nmap <CR> o<Esc>
+
+  " open new tabs
+  nmap <leader>tn <esc>:tabnew<cr>
+  vmap <leader>tn <esc>:tabnew<cr>
+  " imap <leader>tn <esc>:tabnew<cr>i
 " }}}
 
 " Plugins {{{
+  " CtrlP {{{
+    " let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|vendor)$'
+    set wildignore+=*/vendor/*
+    set wildignore+=*/backup[s]/*
+  " }}}
+
   " GitGutter {{{
     nmap <leader>gg :GitGutterToggle<CR>
     hi clear SignColumn
@@ -124,7 +137,8 @@
 
   " Vimux {{{
     let g:vroom_use_vimux=1
-    let vroom_spec_command='rspec -f documentation'
+    let vroom_spec_command="bin/rspec"
+    let g:vroom_use_bundle_exec=0
   " }}}
 
   " NERDCommenter {{{
@@ -151,7 +165,16 @@
     nmap <leader>a> :Tabularize /=><CR>
     vmap <leader>a> :Tabularize /=><CR>
   endif
-" }}}
+
+  " seeing is believing {{{
+    nmap <buffer> <F8> <Plug>(seeing-is-believing-run)
+    xmap <buffer> <F8> <Plug>(seeing-is-believing-run)
+    imap <buffer> <F8> <Plug>(seeing-is-believing-run)
+
+    nmap <buffer> <F7> <Plug>(seeing-is-believing-mark)
+    xmap <buffer> <F7> <Plug>(seeing-is-believing-mark)
+    imap <buffer> <F7> <Plug>(seeing-is-believing-mark)
+  " }}}
 
 " Functions {{{
   " Automatically remove trailing whitespace {{{
