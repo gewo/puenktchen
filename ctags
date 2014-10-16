@@ -1,4 +1,11 @@
 --recurse=yes
 --tag-relative=yes
---exclude=.git
 --extra=+f
+--exclude=.git
+--exclude=log
+--exclude=vendor
+--exclude=vendors
+--exclude=coverage
+--exclude=tmp
+--exclude=backup
+--exclude=backups
