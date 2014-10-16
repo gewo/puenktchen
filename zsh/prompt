@@ -12,11 +12,8 @@ fi
 
 local smiley="%(?,%{$fg[green]%}:)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%})"
 
-# Show user and hostname when connected via ssh.
-local ssh_prompt=''
-if [ $SSH_CONNECTION ]; then
-  ssh_prompt="%{$fg_bold[magenta]%}%n@%m%{$reset_color%}"
-fi
+# Show user and hostname.
+local user_and_host="%{$fg_bold[magenta]%}%n@%m%{$reset_color%}"
 
-PROMPT="${ssh_prompt} %~ ${smiley} %{$reset_color%}"
+PROMPT="${user_and_host} %~ ${smiley} %{$reset_color%}"
 RPROMPT=' %{$fg[white]%} $($rvm_prompt_cmd)$($git_info_cmd)%{$reset_color%}'

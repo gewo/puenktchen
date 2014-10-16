@@ -14,6 +14,11 @@
     alias llh='lla -d .*'
   # }}}
 
+  # dates {{{
+    alias date_now='date +%Y%m%d'
+    alias time_now='date +%Y%m%d%H%M%S'
+  # }}}
+
   alias grep='grep --color'
   alias psg='ps aux | grep'
   alias ka='killall'
@@ -66,6 +71,8 @@
   alias bu='b update'
   alias r='be rails'
   alias rs='be rspec -f documentation'
+  alias xvfb-run='xvfb-run '
+  alias rsx='xvfb-run rs'
 
   alias z='zeus'
   alias zt='z test'
@@ -76,30 +83,39 @@
 
 # Git {{{
   alias g='git'
-  alias gst='g status -sb'
-  alias gsti='g status --ignored'
+  alias gA='ga -A'
   alias ga='g add'
-  alias gc='g commit'
-  alias gcn='gc --no-verify'
-  alias gcm='gc -m'
-  alias gca='gc --amend'
-  alias gco='g checkout'
-  alias gds='g diff --staged'
-  alias gd='g diff'
-  alias gp='g pull'
-  alias gpu='g push'
-  alias gpo='gpu -u origin $(git-current-branch)'
-  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
   alias gb='g branch'
-  alias gbd='gb --merged | grep -v "^\*" | xargs git branch -d'
-  alias gfp='g fetch -p'
   alias gba='gb -av'
-  alias gpr='hub pull-request'
+  alias gbd='gb --merged | grep -v "^\*" | xargs git branch -d'
+  alias gc='g commit'
+  alias gca='gc --amend --no-edit'
+  alias gca='gc --amend'
+  alias gcan='gca --no-verify'
+  alias gcm='gc -m'
+  alias gcn='gc --no-verify'
+  alias gco='g checkout'
+  alias gd='g diff -M'
+  alias gds='gd --staged'
+  alias gdss='gds --stat'
+  alias gfp='g fetch -p'
+  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
+  alias glm='gl master..HEAD'
+  alias gm='g merge'
+  alias gmm='g merge master'
+  alias gp='g pull'
+  alias gpo='gpu -u origin $(git-current-branch)'
+  alias gpr='gp --rebase'
+  alias gprm='gp --rebase origin master'
+  alias gpu='g push'
+  alias gr='g recent-branches'
+  alias gsa='g stash apply'
   alias gsl='g stash list'
   alias gsp='g stash pop'
   alias gss='g stash save'
-  alias gsa='g stash apply'
-  alias gm='g merge'
+  alias gst='g status -sb'
+  alias gsti='g status --ignored'
+  alias hpr='hub pull-request'
 # }}}
 
 # Capistrano {{{
@@ -123,11 +139,15 @@
   alias drmia='d rmi $(di -q)'
 # }}}
 
-# Heroku {{{
-  alias h='heroku'
-  alias hp='h pgbackups'
-  alias hpc='h pgbackups:capture -e'
-  alias hpu='h pgbackups:url'
-  alias hc='h run rails c'
-  alias hl='h logs -t'
+# Hamster {{{
+  alias h='hamster-cli'
+  alias hl='h list'
+  alias hs='h stop'
+  alias hw='h start'
+# }}}
+
+# gewo/living-in-a-box {{{
+  alias ds="dev shell"
+  alias dr="dev run"
+  alias ds3="PORT=3000 dr"
 # }}}
