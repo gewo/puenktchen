@@ -1,0 +1,10 @@
+[user]
+  email = g.woestemeyer@gmail.com
+  name = Gebhard Wöstemeyer
+[core]
+  editor = vim -f
+[push]
+  ; default = simple
+  default = current
+[color]
+  ui = true
