@@ -12,11 +12,13 @@ packages='
   cmake
   doxygen
   exuberant-ctags
+  colordiff
   awesome
   awesome-extra
   xsel
   openssh-server
   gnupg
+  keychain
   nmap
   autossh
   vim-nox
