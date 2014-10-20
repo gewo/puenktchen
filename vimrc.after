@@ -135,10 +135,12 @@
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
   " }}}
 
-  " Vimux {{{
+  " Vroom, Vimux {{{
     let g:vroom_use_vimux=1
     let vroom_spec_command="bin/rspec"
     let g:vroom_use_bundle_exec=0
+    " use windows instead of panes
+    let g:VimuxRunnerType = "window"
   " }}}
 
   " NERDCommenter {{{
