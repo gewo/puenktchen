@@ -8,7 +8,13 @@
   HISTFILE=~/.zsh/zhistory
 
   export CLICOLOR=yepp # osx ls
-  export EDITOR="vim"
+  if hash vimx >/dev/null 2>&1; then
+    export EDITOR=vimx
+  elif hash vim >/dev/null 2>&1; then
+    export EDITOR=vim
+  else
+    export EDITOR=vi
+  fi
   export PAGER='less -r'
 
   export TERM=screen-256color
