@@ -80,6 +80,31 @@ describe "coffee" do
         else
           foo = 'qux'
     EOF
+
+    vim.search 'bar'
+    join
+
+    set_file_contents <<-EOF
+      do ->
+        foo = if bar? then 'baz' else 'qux'
+    EOF
+  end
+
+  specify "joining ternary operator without any assignment magic" do
+    set_file_contents <<-EOF
+      if bar?
+        foo = "baz"
+      else
+        baz = "qux"
+    EOF
+    setup_coffee_filetype
+
+    vim.search 'bar'
+    join
+
+    assert_file_contents <<-EOF
+      if bar? then foo = "baz" else baz = "qux"
+    EOF
   end
 
   specify "object literals" do
