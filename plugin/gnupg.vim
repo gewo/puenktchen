@@ -1,5 +1,5 @@
 " Name:    gnupg.vim
-" Last Change: 2014 Aug 10
+" Last Change: 2014 Nov 20
 " Maintainer:  James McCoy <vega.james@gmail.com>
 " Original Author:  Markus Braun <markus.braun@krawel.de>
 " Summary: Vim plugin for transparent editing of gpg encrypted files.
@@ -94,6 +94,17 @@
 "   g:GPGDefaultRecipients
 "     If set, these recipients are used as defaults when no other recipient is
 "     defined. This variable is a Vim list. Default is unset.
+"
+"   g:GPGPossibleRecipients
+"     If set, these contents are loaded into the recipients dialog. This
+"     allows to add commented lines with possible recipients to the list,
+"     which can be uncommented to select the actual recipients. Example:
+"
+"       let g:GPGPossibleRecipients=[
+"         \"Example User <example@example.com>",
+"         \"Other User <otherexample@example.com>"
+"       \]
+"
 "
 "   g:GPGUsePipes
 "     If set to 1, use pipes instead of temporary files when interacting with
@@ -273,6 +284,11 @@ function s:GPGInit(bufread)
   if (!exists("g:GPGDefaultRecipients"))
     let g:GPGDefaultRecipients = []
   endif
+
+  if (!exists("g:GPGPossibleRecipients"))
+    let g:GPGPossibleRecipients = []
+  endif
+
 
   " prefer not to use pipes since it can garble gpg agent display
   if (!exists("g:GPGUsePipes"))
@@ -804,6 +820,10 @@ function s:GPGEditRecipients()
       let syntaxPattern = '\(' . join(flaggedNames, '\|') . '\)'
     endif
 
+    for line in g:GPGPossibleRecipients
+        silent put ='GPG: '.line
+    endfor
+
     " define highlight
     if (has("syntax") && exists("g:syntax_on"))
       highlight clear GPGUnknownRecipient
@@ -1255,6 +1275,10 @@ function s:GPGPostCmd()
   let &shellredir = s:shellredirsave
   let &shell = s:shellsave
   let &shelltemp = s:shelltempsave
+  " Workaround a bug in the interaction between console vim and
+  " pinentry-curses by forcing Vim to re-detect and setup its terminal
+  " settings
+  let &term = &term
 endfunction
 
 " Function: s:GPGSystem(dict) {{{2
