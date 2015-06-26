@@ -16,4 +16,4 @@ local smiley="%(?,%{$fg[green]%}:)%{$reset_color%},%{$fg[red]%}:(%{$reset_color%
 local user_and_host="%{$fg_bold[magenta]%}%n@%m%{$reset_color%}"
 
 PROMPT="${user_and_host} %~ ${smiley} %{$reset_color%}"
-RPROMPT=' %{$fg[white]%} $($rvm_prompt_cmd)$($git_info_cmd)%{$reset_color%}'
+RPROMPT=' %{$fg[white]%} $($rvm_prompt_cmd)$($git_info_cmd)%{$reset_color%} [%D{%H:%M}]'
