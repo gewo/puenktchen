@@ -1,6 +1,6 @@
 # vim: ft=zsh
 if [ -f /usr/bin/keychain ]; then
-  eval $(keychain --nogui --eval \
+  eval $(keychain --nogui --quiet --eval \
     $(file $HOME/.ssh/([abi]*|*2) | grep private | cut -d':' -f1))
   source ~/.keychain/$HOST-sh
   source ~/.keychain/$HOST-sh-gpg
