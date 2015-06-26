@@ -11,11 +11,15 @@
   set showmode
   set scrolloff=3
 
+  " Ruby {{{
+    let g:ruby_indent_access_modifier_style = 'indent'
+  " }}}
+
   " Colorscheme {{{
-    set background=dark
-    color jellybeans
     " let g:solarized_degrade=1 " gray background
-    " solarized twilight wombat256mod ir_dark sorcerer
+    " set background=dark
+    " solarized twilight wombat256mod ir_dark sorcerer mustang
+    color jellybeans
   " }}}
 
   " Fancy colorcolumn {{{
@@ -54,10 +58,12 @@
 
 " Mappings {{{
   " Map <leader> to <space>
-  map <space> <leader>
+  " map <space> <leader>
+  " let mapleader <space><space> <leader><leader>
 
   " Map ESC to jj and jk
-  imap jj <ESC>
+  " imap jj <ESC>
+  " imap kk <ESC>
   imap jk <ESC>
 
   " Format entire file and return to current cursor pos
@@ -80,7 +86,7 @@
   map // <Leader>c<Space>
 
   " Clear highlighted search
-  nmap <silent> <leader><Space> :nohlsearch<CR>
+  nmap <silent> <leader>/ :nohlsearch<CR>
 
   " Yank from the cursor to the end of the line, to be consistent with C and D.
   nnoremap Y y$
@@ -137,10 +143,10 @@
 
   " Vroom, Vimux {{{
     let g:vroom_use_vimux=1
-    let vroom_spec_command="bin/rspec"
+    let vroom_spec_command="xvfb-run bin/rspec"
     let g:vroom_use_bundle_exec=0
     " use windows instead of panes
-    let g:VimuxRunnerType = "window"
+    " let g:VimuxRunnerType = "window"
   " }}}
 
   " NERDCommenter {{{
