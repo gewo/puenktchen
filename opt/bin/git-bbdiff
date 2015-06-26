@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+[ -n "$DEBUG" ] && set -x
+
+# https://developer.atlassian.com/blog/2015/01/a-better-pull-request/
+# tribute to: https://disqus.com/by/erikvanzijst/
+
+base=${1:-master}
+feature=${2:-$(git current-branch)}
+
+git merge-tree $(git merge-base $base $feature) $base $feature
