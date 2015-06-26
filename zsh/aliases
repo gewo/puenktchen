@@ -2,152 +2,168 @@
 
 # Base {{{
   # ls {{{
-    alias ls='ls -h'
-    if [[ $(ostype) == "Linux" ]] ; then alias ls='ls -h --color' ; fi
-    alias l='ls'
-    alias la='l -a'
-    alias ll='l -lF'
-    alias lla='ll -a'
-    alias lss='ll -rS' # sort by size
-    alias lst='ll -rt' # sort by time
-    alias lh='la -d .*' # show only hidden files
-    alias llh='lla -d .*'
+    alias ls='ls -h '
+    if [[ $(ostype) == "Linux" ]] ; then alias ls='ls -h --color ' ; fi
+    alias l='ls '
+    alias la='l -a '
+    alias ll='l -lF '
+    alias lla='ll -a '
+    alias lss='ll -rS ' # sort by size
+    alias lst='ll -rt ' # sort by time
+    alias lh='la -d .* ' # show only hidden files
+    alias llh='lla -d .* '
   # }}}
 
   # dates {{{
-    alias date_now='date +%Y%m%d'
-    alias time_now='date +%Y%m%d%H%M%S'
+    alias date_now='date +%Y%m%d '
+    alias time_now='date +%Y%m%d%H%M%S '
   # }}}
 
-  alias grep='grep --color'
-  alias psg='ps aux | grep'
-  alias ka='killall'
-  alias k='kill'
+  alias grep='grep --color '
+  alias psg='ps aux | grep '
+  alias ka='killall '
+  alias k='kill '
 
-  alias _='sudo'
+  alias _='sudo '
+
+  alias df='df -h'
 
   # Copy with progress bar. `-o` requires superuser.
-  alias cpv="rsync -pghb -e /dev/null --progress --"
+  alias cpv="rsync -pghb -e /dev/null --progress -- "
 # }}}
 
 # System {{{
   if [[ $(ostype) == "Linux" ]] ; then
-    alias ash='apt-cache show'
-    alias acs='apt-cache search'
-    alias ai='_ apt-get install'
-    alias au='_ apt-get update'
-    alias adu='_ apt-get dist-upgrade'
+    alias ash='apt-cache show '
+    alias acs='apt-cache search '
+    alias ai='_ apt-get install '
+    alias au='_ apt-get update '
+    alias adu='_ apt-get dist-upgrade '
   fi
 # }}}
 
 # Misc {{{
   # alias s='screen -U' # -d -R -S
 
-  alias tc='tmux new -t dev'
+  alias tc='tmux new -t dev '
 
-  alias vim="stty stop '' -ixoff ; vim"
-  alias v='vim'
+  alias vim="stty stop '' -ixoff ; $EDITOR "
+  alias vi='vim '
+  alias v='vim '
+
+  alias curl_akamai='curl -H "Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no" -IXGET '
+  # TODO: alias curl_host='curl -H "Host:
 # }}}
 
 # Suffix aliases {{{
-  alias -s html='$(open_cmd)'
-  alias -s txt='$EDITOR'
-  alias -s rb='$EDITOR'
+  alias -s html='$(open_cmd) '
+  alias -s txt='$EDITOR '
+  alias -s rb='$EDITOR '
 # }}}
 
 # Global aliases {{{
-  alias -g D='| colordiff'
-  alias -g L='| less -R'
-  alias -g DL='D L'
-  alias -g GG='| grep -v grep'
-  alias -g G='| grep -n'
+  alias -g D='| colordiff '
+  alias -g L='| less -R '
+  alias -g DL='D L '
+  alias -g GG='| grep -v grep '
+  alias -g G='| grep -n '
 # }}}
 
 # Ruby and Rails {{{
-  alias ri='ri -f ansi'
-  alias b='bundle'
-  alias be='b exec'
+  alias ri='ri -f ansi '
+  alias b='bundle '
+  alias be='b exec '
   alias bi='b install' # --binstubs
-  alias bu='b update'
+  alias bu='b update '
   alias r='be rails'
-  alias rs='be rspec -f documentation'
+  alias rs='be rspec -f documentation '
   alias xvfb-run='xvfb-run '
-  alias rsx='xvfb-run rs'
+  alias rsx='xvfb-run rs '
+  alias ridoc='bundle exec gem rdoc --all --ri --no-rdoc'
 
-  alias z='zeus'
-  alias zt='z test'
-  alias zr='z rake'
-  alias zs='z s'
-  alias zc='z c'
+  alias serve='ruby -run -e httpd . --port=1337'
+
+  alias z='zeus '
+  alias zt='z test '
+  alias zr='z rake '
+  alias zs='z s '
+  alias zc='z c '
 # }}}
 
 # Git {{{
-  alias g='git'
-  alias gA='ga -A'
-  alias ga='g add'
-  alias gb='g branch'
-  alias gba='gb -av'
-  alias gbd='gb --merged | grep -v "^\*" | xargs git branch -d'
-  alias gc='g commit'
-  alias gca='gc --amend --no-edit'
-  alias gca='gc --amend'
-  alias gcan='gca --no-verify'
-  alias gcm='gc -m'
-  alias gcn='gc --no-verify'
-  alias gco='g checkout'
-  alias gd='g diff -M'
-  alias gds='gd --staged'
-  alias gdss='gds --stat'
-  alias gfp='g fetch -p'
-  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
-  alias glm='gl master..HEAD'
-  alias gm='g merge'
-  alias gmm='g merge master'
-  alias gp='g pull'
-  alias gpo='gpu -u origin $(git-current-branch)'
-  alias gpr='gp --rebase'
-  alias gprm='gp --rebase origin master'
-  alias gpu='g push'
-  alias gr='g recent-branches'
-  alias gsa='g stash apply'
-  alias gsl='g stash list'
-  alias gsp='g stash pop'
-  alias gss='g stash save'
-  alias gst='g status -sb'
-  alias gsti='g status --ignored'
-  alias hpr='hub pull-request'
+  alias g='git '
+  alias gA='ga -A '
+  alias ga='g add '
+  alias gb='g branch '
+  alias gba='gb -av '
+  alias gbd='gb --merged | grep -v "^\*" | xargs git branch -d '
+  alias gc='g commit -v '
+  alias gca='gc --amend --no-edit '
+  alias gca='gc --amend '
+  alias gcan='gca --no-verify '
+  alias gcm='gc -m '
+  alias gcn='gc --no-verify '
+  alias gco='g checkout '
+  alias gd='g diff -M '
+  alias gds='gd --staged '
+  alias gdss='gds --stat '
+  alias gfp='g fetch -p '
+  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" '
+  alias glm='gl master..HEAD '
+  alias gm='g merge '
+  alias gmm='g merge master '
+  alias gp='g pull '
+  alias gpo='gpu -u origin $(git-current-branch) '
+  alias gpr='gp --rebase '
+  alias gprm='gp --rebase origin master '
+  alias gpu='g push '
+  alias gr='g recent-branches '
+  alias gsa='g stash apply '
+  alias gsl='g stash list '
+  alias gsp='g stash pop '
+  alias gss='g stash save '
+  alias gst='g status -sb '
+  alias gsti='g status --ignored '
+  alias ham='hub am -3 '
+  alias hpr='hub pull-request '
 # }}}
 
 # Capistrano {{{
-  alias c='be cap'
-  alias cpd='c production deploy'
-  alias cpc='c production rails:console'
-  alias cpl='c production logs'
-  alias csd='c staging deploy'
-  alias csc='c staging rails:console'
-  alias csl='c staging logs'
+  alias c='be cap '
+  alias cpd='c production deploy '
+  alias cpc='c production rails:console '
+  alias cpl='c production logs '
+  alias csd='c staging deploy '
+  alias csc='c staging rails:console '
+  alias csl='c staging logs '
 # }}}
 
 # Docker {{{
-  alias d='docker'
-  alias dp='d port'
-  alias dps='d ps'
-  alias dpa='d ps -a'
-  alias di='d images'
-  alias dka='docker kill $(dpa -q)'
-  alias drma='d rm $(dpa -q)'
-  alias drmia='d rmi $(di -q)'
+  alias d='docker '
+  alias dp='d port '
+  alias dps='d ps '
+  alias dpa='d ps -a '
+  alias di='d images '
+  alias dka='docker kill $(dpa -q) '
+  alias drma='d rm $(dpa -q) '
+  alias drmia='d rmi $(di -q) '
+
+  alias fig='docker-compose '
 # }}}
 
 # Hamster {{{
-  alias h='hamster-cli'
-  alias hl='h list'
-  alias hs='h stop'
-  alias hw='h start'
+  alias h='hamster '
+  alias hl='h list '
+  alias hs='h stop '
+  alias hw='h start '
+# }}}
+
+# Toggl (https://github.com/drobertadams/toggl-cli) {{{
+  alias t='toggl'
 # }}}
 
 # gewo/living-in-a-box {{{
-  alias ds="dev shell"
-  alias dr="dev run"
-  alias ds3="PORT=3000 dr"
+  alias ds="dev shell "
+  alias dr="dev run "
+  alias ds3="PORT=3000 dr "
 # }}}
