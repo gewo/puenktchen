@@ -16,13 +16,14 @@ URxvt*saveLines: 50000
 ! }}}
 
 ! Fonts {{{
-URxvt.font: xft:DejaVu Sans Mono:book:size=9
-URxvt.imFont:xft:DejaVu Sans Mono:book:size=9
-URxvt.boldFont:xft:DejaVu Sans Mono:bold:size=9
-URxvt.italicFont:xft:DejaVu Sans Mono:oblique:size=9
-URxvt.boldItalicFont:xft:DejaVu Sans Mono:oblique:italic:size=9
+URxvt.font: xft:DejaVu Sans Mono:book:size=10
+URxvt.imFont:xft:DejaVu Sans Mono:book:size=10
+URxvt.boldFont:xft:DejaVu Sans Mono:bold:size=10
+URxvt.italicFont:xft:DejaVu Sans Mono:oblique:size=10
+URxvt.boldItalicFont:xft:DejaVu Sans Mono:oblique:italic:size=10
 URxvt.cursorColor: grey
-URxvt.letterSpace: -2
+! URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 ! }}}
 
 ! Tango Colors {{{
