@@ -12,6 +12,8 @@
 
   branchdate = !git for-each-ref --sort='-authordate' --format='%(authordate)%09%(objectname:short)%09%(refname)' refs/heads | sed -e 's-refs/heads/--'
 
+  current-branch = !git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+
   ; enable local checkout of github pull-requests (git checkout pr/1)
   pullify = !git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
 [include]
