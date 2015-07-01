@@ -1,4 +1,4 @@
-# vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+# vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker ft=zsh
 
 # Base {{{
   # ls {{{
@@ -113,7 +113,7 @@
   alias gm='g merge '
   alias gmm='g merge master '
   alias gp='g pull '
-  alias gpo='gpu -u origin $(git-current-branch) '
+  alias gpo='gpu -u origin $(git current-branch) '
   alias gpr='gp --rebase '
   alias gprm='gp --rebase origin master '
   alias gpu='g push '
@@ -126,6 +126,14 @@
   alias gsti='g status --ignored '
   alias ham='hub am -3 '
   alias hpr='hub pull-request '
+
+  # fast-forward branch without checking out http://stackoverflow.com/q/5147537
+  function gff() {
+    branch=${1:-master}
+    upstream=${2:-origin}
+    git fetch $upstream $branch:$branch
+  }
+
 # }}}
 
 # Capistrano {{{
