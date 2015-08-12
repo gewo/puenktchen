@@ -4,9 +4,9 @@
 "
 " Additions to the janus vim distribution.
 
-nnoremap <space> <nop>
-let mapleader=" "
-" let mapleader = ","
+" nnoremap <space> <nop>
+" let mapleader=" "
+let mapleader = ","
 
 " use T-Comment instead
 " call janus#disable_plugin('nerdcommenter')
