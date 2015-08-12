@@ -59,6 +59,10 @@
 
   setopt no_beep
   setopt auto_cd
+
+  # dirs -v; cd -<num>
+  export DIRSTACKSIZE=8
+  setopt autopushd pushdminus pushdsilent pushdtohome
 # }}}
 
 # Locales {{{
