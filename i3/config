@@ -227,7 +227,11 @@ exec --no-startup-id dunst -config ~/.dotfiles/dunstrc
 
 exec --no-startup-id xrdb -merge ~/.Xresources.d/xft
 exec --no-startup-id xrdb -merge ~/.Xresources.d/urxvt
-exec --no-startup-id x11vnc -bg -usepw -reopen -forever -shared -rfbport 5902
+exec --no-startup-id x11vnc -bg -usepw -reopen -forever -shared -repeat -rfbport 5902
+
+# exec --no-startup-id xmodmap -e "clear lock"
+# exec --no-startup-id xmodmap -e "keysym Caps_Lock = Control"
+exec --no-startup-id setxkbmap -option ctrl:nocaps
 
 # i3-style slate -o ~/.i3/config
 client.focused #859900 #859900 #fdf6e3 #859900
