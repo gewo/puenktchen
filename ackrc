@@ -5,4 +5,5 @@
 --ignore-dir=log
 --ignore-dir=tmp
 --ignore-dir=doc
+--ignore-dir=public
 --ignore-file=is:tags
