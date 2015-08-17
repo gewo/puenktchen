@@ -188,6 +188,28 @@ describe "ruby" do
             end
       EOF
     end
+
+    it "handles ivars" do
+      set_file_contents <<-EOF
+        @variable.nil? ? do_something : do_something_else
+      EOF
+
+      split
+
+      assert_file_contents <<-EOF
+        if @variable.nil?
+          do_something
+        else
+          do_something_else
+        end
+      EOF
+
+      join
+
+      assert_file_contents <<-EOF
+        @variable.nil? ? do_something : do_something_else
+      EOF
+    end
   end
 
   describe "when-then" do
@@ -394,7 +416,7 @@ describe "ruby" do
     assert_file_contents <<-EOF
       foo = {
         :bar => 'baz',
-        :one => 'two',
+        :one => 'two'
       }
     EOF
 
@@ -611,6 +633,34 @@ describe "ruby" do
       EOF
     end
 
+    it "optimizes particular cases to &-shorthands" do
+      set_file_contents <<-EOF
+        [1, 2, 3, 4].map(&:to_s)
+      EOF
+
+      vim.search 'to_s'
+      split
+
+      assert_file_contents <<-EOF
+        [1, 2, 3, 4].map do |i|
+          i.to_s
+        end
+      EOF
+
+      set_file_contents <<-EOF
+        [1, 2, 3, 4].map do |whatever|
+          whatever.to_s
+        end
+      EOF
+
+      vim.search 'whatever|'
+      join
+
+      assert_file_contents <<-EOF
+        [1, 2, 3, 4].map(&:to_s)
+      EOF
+    end
+
     it "handles trailing code" do
       set_file_contents <<-EOF
         Bar.new { |one| two }.map(&:name)
@@ -762,6 +812,87 @@ describe "ruby" do
     end
   end
 
+  describe "method arguments" do
+    specify "with hanging args" do
+      vim.command('let g:splitjoin_ruby_hanging_args = 1')
+
+      set_file_contents(<<-EOF)
+        params.permit(:title, :action, :subject_type, :subject_id, :own)
+      EOF
+
+      vim.search(':title')
+      split
+
+      assert_file_contents(<<-EOF)
+        params.permit(:title,
+                      :action,
+                      :subject_type,
+                      :subject_id,
+                      :own)
+      EOF
+    end
+
+    specify "without hanging args" do
+      vim.command('let g:splitjoin_ruby_hanging_args = 0')
+
+      set_file_contents(<<-EOF)
+        params.permit(:title, :action, :subject_type, :subject_id, :own)
+      EOF
+
+      vim.search(':title')
+      split
+
+      assert_file_contents(<<-EOF)
+        params.permit(
+          :title,
+          :action,
+          :subject_type,
+          :subject_id,
+          :own
+        )
+      EOF
+    end
+
+    specify "without brackets" do
+      vim.command('let g:splitjoin_ruby_hanging_args = 0')
+
+      set_file_contents(<<-EOF)
+        params.permit :title, :action, :subject_type, :subject_id, :own
+      EOF
+
+      vim.search(':title')
+      split
+
+      assert_file_contents(<<-EOF)
+        params.permit(
+          :title,
+          :action,
+          :subject_type,
+          :subject_id,
+          :own
+        )
+      EOF
+    end
+
+    specify "with spaces around brackets" do
+      vim.command('let g:splitjoin_ruby_hanging_args = 0')
+
+      set_file_contents(<<-EOF)
+        foo = bar( "one", "two" )
+      EOF
+
+      vim.search('one')
+      split
+
+      assert_file_contents(<<-EOF)
+        foo = bar(
+          "one",
+          "two"
+        )
+      EOF
+    end
+  end
+
   describe "method options" do
     specify "with curly braces" do
       vim.command('let g:splitjoin_ruby_curly_braces = 1')
@@ -817,6 +948,7 @@ describe "ruby" do
         foo(:one => 1, :two => 2)
       EOF
 
+      vim.search 'one'
       split
 
       assert_file_contents <<-EOF
@@ -828,6 +960,24 @@ describe "ruby" do
 
       assert_file_contents <<-EOF
         foo(:one => 1, :two => 2)
+      EOF
+    end
+
+    specify "with arguments, round braces, curly braces" do
+      vim.command('let g:splitjoin_ruby_curly_braces = 1')
+
+      set_file_contents <<-EOF
+        foo(one, :two => 2, :three => 3)
+      EOF
+
+      vim.search 'one'
+      split
+
+      assert_file_contents <<-EOF
+        foo(one, {
+          :two => 2,
+          :three => 3,
+        })
       EOF
     end
 
@@ -852,6 +1002,48 @@ describe "ruby" do
       assert_file_contents <<-EOF
         foo "\#{one}", { :two => 3 }
       EOF
+    end
+  end
+
+  describe "array literals" do
+    specify "simple case with {" do
+      set_file_contents "array = %w{one two three}"
+
+      vim.search 'one'
+      split
+
+      assert_file_contents <<-EOF
+        array = %w{
+          one
+          two
+          three
+        }
+      EOF
+
+      vim.search '%w{'
+      join
+
+      assert_file_contents "array = %w{one two three}"
+    end
+
+    specify "simple case with |" do
+      set_file_contents "array = %w|one two three|"
+
+      vim.search 'one'
+      split
+
+      assert_file_contents <<-EOF
+        array = %w|
+          one
+          two
+          three
+        |
+      EOF
+
+      vim.search '%w|'
+      join
+
+      assert_file_contents "array = %w|one two three|"
     end
   end
 end
