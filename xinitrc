@@ -18,4 +18,4 @@ for resource in ~/.Xresources ~/.Xresources.d/* ; do
 done
 
 eval $(dbus-launch --sh-syntax --exit-with-session)
-exec awesome
+exec i3
