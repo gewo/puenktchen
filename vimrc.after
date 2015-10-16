@@ -121,7 +121,7 @@
   vmap <Down> ]egv
 
   " insert new line without entering insert mode.
-  nmap <CR> o<Esc>
+  " nmap <CR> o<Esc>
 
   " open new tabs
   nmap <leader>tn <esc>:tabnew<cr>
@@ -132,8 +132,21 @@
 " Plugins {{{
   " CtrlP {{{
     " let g:ctrlp_custom_ignore = '\v[\/](\.(git|hg|svn)|vendor)$'
+    set wildmode=list:longest
+    set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
     set wildignore+=*/vendor/*
     set wildignore+=*/backup[s]/*
+    set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+    set wildignore+=*vim/backups*
+    set wildignore+=*sass-cache*
+    set wildignore+=*DS_Store*
+    set wildignore+=vendor/rails/**
+    set wildignore+=vendor/cache/**
+    set wildignore+=*.gem
+    set wildignore+=log/**
+    set wildignore+=tmp/**
+    set wildignore+=*.png,*.jpg,*.gif
+
   " }}}
 
   " GitGutter {{{
@@ -147,7 +160,7 @@
 
   " Vroom, Vimux {{{
     let g:vroom_use_vimux=1
-    let vroom_spec_command="xvfb-run bin/rspec"
+    let vroom_spec_command="xvfb-run bundle exec spring rspec"
     let g:vroom_use_bundle_exec=0
     " use windows instead of panes
     " let g:VimuxRunnerType = "window"
@@ -203,4 +216,7 @@
     command! KillWhitespace call StripTrailingWhitespace()
     nmap <leader>kw :KillWhitespace<CR>
   " }}}
+
+  " Abbreviations {{{
+    abbreviate bp require 'pry'; binding.pry
 " }}}
