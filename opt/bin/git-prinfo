@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+[ -n "$DEBUG" ] && set -x
+PRNR=$1
+REPO=${REPO:-$(git remote -v | grep origin | grep github | head -n 1 | sed -n -e 's/.*github.com:\([^.]*\)\.git.*/\1/p')}
+
+if [ -z "$GITHUB_TOKEN" ]; then
+  echo "I need a GITHUB_TOKEN env var."
+  exit 1
+fi
+
+if [ -z "$PRNR" ]; then
+  echo "First argument has to be the pull-request number"
+  exit 2
+fi
+
+if [ -z "$REPO" ]; then
+  echo "Go into your github repo or set the REPO env var"
+  exit 4
+fi
+
+PRINFO=$(curl -s -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/$REPO/pulls/$PRNR)
+
+title=$(echo $PRINFO | jq '.title' | sed -e 's,",,g')
+url=$(echo $PRINFO | jq '.html_url' | sed -e 's,",,g')
+additions=$(echo $PRINFO | jq '.additions')
+deletions=$(echo $PRINFO | jq '.deletions')
+
+echo "RFC: $title, +$additions -$deletions, $url"
