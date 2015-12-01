@@ -176,7 +176,7 @@ bindsym Shift+XF86AudioLowerVolume exec mpc prev
 bindsym Shift+XF86AudioRaiseVolume exec mpc next
 
 # lock screen
-bindsym $mod+Ctrl+l exec /home/gewo/opt/bin/i3lock_pixelate
+bindsym $mod+Ctrl+l exec i3lock_pixelate
 
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/shots/'
 
@@ -196,8 +196,11 @@ bindsym $mod+o move workspace to output right
 # invert colors
 bindsym $mod+i exec xcalib -i -a
 
+# passmenu
+bindsym $mod+p exec /usr/share/doc/pass/contrib/dmenu/passmenu
+
 # no title bars by default
-new_window 1pixel
+# new_window 1pixel
 bindsym $mod+b border toggle
 
 
@@ -232,6 +235,14 @@ exec --no-startup-id x11vnc -bg -usepw -reopen -forever -shared -repeat -rfbport
 # exec --no-startup-id xmodmap -e "clear lock"
 # exec --no-startup-id xmodmap -e "keysym Caps_Lock = Control"
 exec --no-startup-id setxkbmap -option ctrl:nocaps
+# exec --no-startup-id xmodmap ~/.xmodmaprc
+# exec --no-startup-id gnome-keyring-daemon --start --foreground --components=secrets
+exec --no-startup-id gnome-keyring-daemon --start --components=secrets
+# switch mouse buttons
+exec --no-startup-id xmodmap -e 'pointer = 3 2 1'
+exec --no-startup-id xrdb -merge ~/.Xresources.d/xft
+exec --no-startup-id xrdb -merge ~/.Xresources.d/urxvt
+exec workrave &
 
 # i3-style slate -o ~/.i3/config
 client.focused #859900 #859900 #fdf6e3 #859900
