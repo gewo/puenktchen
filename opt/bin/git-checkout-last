@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# git checkout-last (git checkout last branch)
+
+recent_branches=$(git for-each-ref --count=2 --sort=-committerdate refs/heads/ --format='%(refname:short)')
+current=$(git symbolic-ref --short HEAD)
+
+for branch in $recent_branches; do
+  recent=$branch
+  if [ "$current" != "$recent" ]; then
+    break
+  fi
+done
+
+git checkout $recent
