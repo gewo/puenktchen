@@ -42,14 +42,28 @@
   fi
 # }}}
 
+# VIM {{{
+  alias vim="stty stop '' -ixoff ; $EDITOR "
+  alias vi='vim '
+  alias v='vim '
+
+  function review() {
+    url=${1}
+    vim "+CodeReview $url"
+  }
+# }}}
+
+# ghi {{{
+# # label 123 wontfix
+  function label() {
+    ghi label $1 -a ${2:-LGTG}
+  }
+# }}}
+
 # Misc {{{
   # alias s='screen -U' # -d -R -S
 
   alias tc='tmux new -t dev '
-
-  alias vim="stty stop '' -ixoff ; $EDITOR "
-  alias vi='vim '
-  alias v='vim '
 
   alias curl_akamai='curl -H "Pragma: akamai-x-cache-on, akamai-x-cache-remote-on, akamai-x-check-cacheable, akamai-x-get-cache-key, akamai-x-get-extracted-values, akamai-x-get-nonces, akamai-x-get-ssl-client-session-id, akamai-x-get-true-cache-key, akamai-x-serial-no" -IXGET '
   # TODO: alias curl_host='curl -H "Host:
@@ -174,4 +188,5 @@
   alias ds="dev shell "
   alias dr="dev run "
   alias ds3="PORT=3000 dr "
+  alias dS="dev stop"
 # }}}
