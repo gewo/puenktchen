@@ -29,6 +29,7 @@ packages='
   scrot
   firefox
   virtualbox-4.3
+  ttf-mscorefonts-installer
 '
 
 # add virtualbox repo
