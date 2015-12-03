@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# pivotal_pull_request
+#
+# Automagically add Pivotaltracker ticket link to Github Pull-Requests.
+#
+# Requirements:
+# * hub (https://github.com/github/hub)
+# * branchname with ticket number at the end: my_branch_12345678
+#
+# Usage: pivotal_pull_request 'This is my awesome Pull-Request'
+
+[ -n "$DEBUG" ] && set -x
+
+branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
+ticket_nr=$(echo $branch | egrep -o '_[0-9]+$' | head -n 1 | egrep -o '[0-9]+')
+
+msg=$(cat <<EOF
+
+Pivotal Tracker Ticket: https://www.pivotaltracker.com/story/show/$ticket_nr
+
+# Comment lines will be removed!
+$(git log --oneline master.. | sed -e 's/^/# /')
+EOF
+)
+
+tmpfile=$(mktemp)
+echo "$msg" > $tmpfile
+
+${EDITOR:-vi} $tmpfile
+
+cat $tmpfile | grep -v '^#' | hub pull-request -F -
+
+rm -f $tmpfile
