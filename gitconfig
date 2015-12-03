@@ -16,5 +16,15 @@
 
   ; enable local checkout of github pull-requests (git checkout pr/1)
   pullify = !git config --add remote.origin.fetch '+refs/pull/*/head:refs/remotes/origin/pr/*'
+
+  ; http://stackoverflow.com/a/12056944
+  psed = !sh -c 'git grep --null --full-name --name-only --perl-regexp -e \"$1\" | xargs -0 perl -i -p -e \"s/$1/$2/g\"' -
 [include]
   path = .gitsecrets
+[ghi]
+	pager = cat
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[mergetool]
+  prompt = false
