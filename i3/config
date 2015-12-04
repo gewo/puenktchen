@@ -198,6 +198,7 @@ bindsym $mod+i exec xcalib -i -a
 
 # passmenu
 bindsym $mod+p exec /usr/share/doc/pass/contrib/dmenu/passmenu
+bindsym $mod+t exec two-factor-auth-code
 
 # no title bars by default
 # new_window 1pixel
