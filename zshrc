@@ -20,6 +20,7 @@
   export TERM=screen-256color
 
   PATH=$HOME/opt/bin:$PATH
+  PATH=$HOME/bin:$PATH
   PATH=$HOME/.local/bin:$PATH
   PATH=/usr/local/sbin:/usr/local/bin:$PATH
   PATH=$PATH:$HOME/.rvm/bin
