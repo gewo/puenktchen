@@ -18,9 +18,4 @@ local user_and_host="%{$fg_bold[magenta]%}%n@%m%{$reset_color%}"
 PROMPT="${user_and_host} %~ ${smiley} %{$reset_color%}"
 RPROMPT=' %{$fg[white]%} $($rvm_prompt_cmd)$($git_info_cmd)%{$reset_color%} [%D{%H:%M}]'
 
-# set rxvt title to user@hostname
-case $ORIGTERM in
-  xterm*|rxvt*)
-    precmd () { print -Pn "\e]0;%n@%m: %~\a" }
-    ;;
-esac
+precmd () { print -Pn "\e]0;%n@%m: %~\a" }
