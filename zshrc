@@ -17,6 +17,7 @@
   fi
   export PAGER='less -r'
 
+  ORIGTERM=$TERM
   export TERM=screen-256color
 
   PATH=$HOME/opt/bin:$PATH
