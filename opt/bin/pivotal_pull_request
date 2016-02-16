@@ -1,17 +1,16 @@
 #!/bin/bash
 
-# pivotal_pull_request
-#
 # Automagically add Pivotaltracker ticket link to Github Pull-Requests.
 #
 # Requirements:
 # * hub (https://github.com/github/hub)
 # * branchname with ticket number at the end: my_branch_12345678
 #
-# Usage: pivotal_pull_request 'This is my awesome Pull-Request'
+# Usage: script/pivotal_pull_request
 
 [ -n "$DEBUG" ] && set -x
 
+base=${BASE:-master}
 branch=$(git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||')
 ticket_nr=$(echo $branch | egrep -o '_[0-9]+$' | head -n 1 | egrep -o '[0-9]+')
 
@@ -29,6 +28,6 @@ echo "$msg" > $tmpfile
 
 ${EDITOR:-vi} $tmpfile
 
-cat $tmpfile | grep -v '^#' | hub pull-request -F -
+cat $tmpfile | grep -v '^#' | hub pull-request -b $base -F -
 
 rm -f $tmpfile
