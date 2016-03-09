@@ -6,4 +6,5 @@
 --ignore-dir=tmp
 --ignore-dir=doc
 --ignore-dir=public
+--ignore-dir=app/build
 --ignore-file=is:tags
