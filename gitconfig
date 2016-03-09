@@ -19,6 +19,7 @@
 
   ; http://stackoverflow.com/a/12056944
   psed = !sh -c 'git grep --null --full-name --name-only --perl-regexp -e \"$1\" | xargs -0 perl -i -p -e \"s/$1/$2/g\"' -
+  yolo = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [include]
   path = .gitsecrets
 [ghi]
