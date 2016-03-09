@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+
+[ -n "$DEBUG" ] && set -x
+
 DOTPATH=$HOME/.dotfiles
 
 # TODO: check for Command Line Tools on OSX
