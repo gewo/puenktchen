@@ -1,1 +1,1 @@
-sudo gem install ghi pygments.rb pt
+sudo gem install ghi pygments.rb pt timetrap
