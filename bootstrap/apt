@@ -6,37 +6,120 @@ install_apt() {
 }
 
 packages='
-  curl
-  ack-grep
-  build-essential
-  cmake
-  doxygen
-  exuberant-ctags
-  colordiff
-  awesome
-  awesome-extra
-  xsel
-  openssh-server
-  gnupg
-  keychain
-  nmap
-  autossh
-  vim-nox
-  mutt-patched
-  enscript
-  urlview
-  tmux
-  scrot
-  firefox
-  virtualbox-4.3
-  ttf-mscorefonts-installer
+abook
+ack-grep
+apt-file
+autossh
+awscli
+backupninja
+build-essential
+cmake
+colordiff
+curl
+darktable
+default-jdk
+doxygen
+duply
+elinks
+enscript
+exuberant-ctags
+fbi
+fdroidserver
+feh
+firmware-b43-installer
+geeqie
+gimp
+git-email
+git-notifier
+gnupg
+gparted
+iceweasel
+imagemagick
+iptraf
+jq
+keepass2
+keychain
+libccid
+libimage-exiftool-perl
+maven
+mouseemu
+mumble
+mutt-patched
+mysql-workbench
+ncmpcpp
+nmap
+ntp
+ntpdate
+oathtool
+openssh-server
+pacpl
+pass
+pcscd
+pkg-config
+pommed
+postgresql-client
+pv
+python-dev
+python-pip
+rake
+ranger
+rawtherapee
+ruby-dev
+ruby-pygments.rb
+ruby2.1-doc
+rxvt-unicode-256color
+scdaemon
+scrot
+sieve-connect
+sshfs
+tig
+tmux
+udevil
+unclutter
+urlview
+vagrant
+vifm
+vim-nox
+virtualbox
+virtualenv
+vlc
+weechat
+weechat-doc
+weechat-plugins
+weechat-scripts
+wicd-curses
+wicd-gtk
+workrave
+wyrd
+xcalib
+xdotool
+xorg
+xsel
+zathura
+zsh
 '
 
-# add virtualbox repo
-wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | \
-  sudo apt-key add -
-echo 'deb http://download.virtualbox.org/virtualbox/debian saucy contrib' \
-  | sudo tee /etc/apt/sources.list.d/virtualbox.list
+# reaver
+# uzbl
+# firefox
+# links2
+# slim
+# ttf-mscorefonts-installer
+# calcurse
+
+# Virtualbox
+# wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- \
+  # | sudo apt-key add -
+# echo 'deb http://download.virtualbox.org/virtualbox/debian jessie contrib' \
+  # | sudo tee /etc/apt/sources.list.d/virtualbox.list
+
+# Backports
+echo "deb http://http.debian.net/debian jessie-backports main" \
+  | sudo tee /etc/apt/sources.list.d/backports.list
 
 sudo apt-get update
+
 install_apt $packages
+install_apt lib32stdc++6 lib32z1 # android-sdk
+install_apt -t jessie-backports i3
+# install_apt virtualbox-4.3
