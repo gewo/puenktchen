@@ -34,5 +34,6 @@ synclient TapButton2=3 &
 synclient TapButton3=2 &
 
 workrave &
+wicd-gtk --tray &
 
 exec i3
