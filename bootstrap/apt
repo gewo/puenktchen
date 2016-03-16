@@ -38,7 +38,6 @@ imagemagick
 iptraf
 jq
 keepass2
-keychain
 libccid
 libimage-exiftool-perl
 maven
@@ -107,6 +106,7 @@ zsh
 # slim
 # ttf-mscorefonts-installer
 # calcurse
+# keychain
 
 # Virtualbox
 # wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- \
