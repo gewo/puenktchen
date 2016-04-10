@@ -28,17 +28,22 @@
 
   alias df='df -h'
 
+  alias mv='mv -i'
+  alias cp='cp -i'
+
+  alias mine="sudo chown -R $USER ."
+
   # Copy with progress bar. `-o` requires superuser.
   alias cpv="rsync -pghb -e /dev/null --progress -- "
 # }}}
 
 # System {{{
   if [[ $(ostype) == "Linux" ]] ; then
-    alias ash='apt-cache show '
+    alias ash='apt show '
     alias acs='apt-cache search '
-    alias ai='_ apt-get install '
-    alias au='_ apt-get update '
-    alias adu='_ apt-get dist-upgrade '
+    alias ai='_ apt install '
+    alias au='_ apt update '
+    alias adu='_ apt dist-upgrade '
   fi
 # }}}
 
@@ -76,11 +81,11 @@
 # }}}
 
 # Global aliases {{{
-  alias -g D='| colordiff '
+  # alias -g D='| colordiff '
   alias -g L='| less -R '
   alias -g DL='D L '
   alias -g GG='| grep -v grep '
-  alias -g G='| grep -n '
+  alias -g G='| grep '
 # }}}
 
 # Ruby and Rails {{{
@@ -181,7 +186,7 @@
 # }}}
 
 # Toggl (https://github.com/drobertadams/toggl-cli) {{{
-  alias t='toggl'
+  # alias t='toggl'
 # }}}
 
 # gewo/living-in-a-box {{{
