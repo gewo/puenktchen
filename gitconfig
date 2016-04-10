@@ -1,6 +1,6 @@
 [user]
-  email = g.woestemeyer@gmail.com
-  name = Gebhard Wöstemeyer
+  email = g@ctr.lc
+  name = Gebhard Woestemeyer
 [push]
   ; default = simple
   default = current
