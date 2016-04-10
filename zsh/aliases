@@ -137,6 +137,7 @@
   alias gprm='gp --rebase origin master '
   alias gpu='g push '
   alias gr='g recent-branches '
+  alias grv='g remote -v'
   alias gsa='g stash apply '
   alias gsl='g stash list '
   alias gsp='g stash pop '
