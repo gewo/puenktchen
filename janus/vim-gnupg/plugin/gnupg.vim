@@ -1,5 +1,5 @@
 " Name:    gnupg.vim
-" Last Change: 2015 Sep 29
+" Last Change: 2015 Dec 17
 " Maintainer:  James McCoy <vega.james@gmail.com>
 " Original Author:  Markus Braun <markus.braun@krawel.de>
 " Summary: Vim plugin for transparent editing of gpg encrypted files.
@@ -75,8 +75,9 @@
 " Variables: {{{2
 "
 "   g:GPGExecutable
-"     If set used as gpg executable, otherwise the system chooses what is run
-"     when "gpg" is called. Defaults to "gpg --trust-model always".
+"     If set used as gpg executable. If unset, defaults to
+"     "gpg --trust-model always" if "gpg" is available, falling back to
+"     "gpg2 --trust-model always" if not.
 "
 "   g:GPGUseAgent
 "     If set to 0 a possible available gpg-agent won't be used. Defaults to 1.
@@ -143,6 +144,13 @@
 "     - gpgagent and pinentry:
 "         you will get a popup window the first time you open a file that
 "         needs to be decrypted.
+"
+"   If you're using Vim <7.4.959, after the plugin runs any external command,
+"   Vim will no longer be able to yank to/paste from the X clipboard or
+"   primary selections.  This is caused by a workaround for a different bug
+"   where Vim no longer recognizes the key codes for keys such as the arrow
+"   keys after running GnuPG.  See the discussion at
+"   https://github.com/jamessan/vim-gnupg/issues/36 for more details.
 "
 " Credits: {{{2
 "
@@ -271,7 +279,11 @@ function s:GPGInit(bufread)
 
   " check what gpg command to use
   if (!exists("g:GPGExecutable"))
-    let g:GPGExecutable = "gpg --trust-model always"
+    if executable("gpg")
+      let g:GPGExecutable = "gpg --trust-model always"
+    else
+      let g:GPGExecutable = "gpg2 --trust-model always"
+    endif
   endif
 
   " check if gpg-agent is allowed
@@ -514,15 +526,25 @@ function s:GPGDecrypt(bufread)
       let start = start + strlen("gpg: public key is ")
       let recipient = matchstr(output, s:keyPattern, start)
       call s:GPGDebug(1, "recipient is " . recipient)
-      let name = s:GPGNameToID(recipient)
-      if !empty(name)
-        let b:GPGRecipients += [name]
-        call s:GPGDebug(1, "name of recipient is " . name)
-      else
-        let b:GPGRecipients += [recipient]
-        echohl GPGWarning
-        echom "The recipient \"" . recipient . "\" is not in your public keyring!"
-        echohl None
+      " In order to support anonymous communication, GnuPG allows eliding
+      " information in the encryption metadata specifying what keys the file
+      " was encrypted to (c.f., --throw-keyids and --hidden-recipient).  In
+      " that case, the recipient(s) will be listed as having used a key of all
+      " zeroes.
+      " Since this will obviously never actually be in a keyring, only try to
+      " convert to an ID or add to the recipients list if it's not a hidden
+      " recipient.
+      if recipient !~? '^0x0\+$'
+        let name = s:GPGNameToID(recipient)
+        if !empty(name)
+          let b:GPGRecipients += [name]
+          call s:GPGDebug(1, "name of recipient is " . name)
+        else
+          let b:GPGRecipients += [recipient]
+          echohl GPGWarning
+          echom "The recipient \"" . recipient . "\" is not in your public keyring!"
+          echohl None
+        end
       end
       let start = match(output, asymmPattern, start)
     endwhile
@@ -587,6 +609,7 @@ function s:GPGDecrypt(bufread)
     1mark [
     $mark ]
     let &undolevels = levels
+    let &readonly = filereadable(filename) && filewritable(filename) == 0
     " call the autocommand for the file minus .gpg$
     silent execute ':doautocmd BufReadPost ' . autocmd_filename
     call s:GPGDebug(2, 'called BufReadPost autocommand for ' . autocmd_filename)
@@ -715,9 +738,19 @@ function s:GPGEncrypt()
     return
   endif
 
-  call rename(destfile, resolve(expand('<afile>')))
+  let filename = resolve(expand('<afile>'))
+  if rename(destfile, filename)
+    " Rename failed, so clean up the tempfile
+    call delete(destfile)
+    echohl GPGError
+    echom printf("\"%s\" E212: Can't open file for writing", filename)
+    echohl None
+    return
+  endif
+
   if auType == 'BufWrite'
     setl nomodified
+    let &readonly = filereadable(filename) && filewritable(filename) == 0
   endif
 
   silent exe ':doautocmd '. auType .'Post '. autocmd_filename
