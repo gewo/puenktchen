@@ -96,8 +96,11 @@
   nnoremap Y y$
 
   " Easy saving in terminal
-  imap <C-s> <Esc>:w<Enter>a
-  nmap <C-s> <Esc>:w<Enter>
+  " imap <C-s> <Esc>:w<Enter>a
+  " nmap <C-s> <Esc>:w<Enter>
+  imap <leader>w <Esc>:w<Enter>a
+  nmap <leader>w <Esc>:w<Enter>
+
 
   " Delete all buffers
   nmap <leader>D :bufdo bd<CR>
