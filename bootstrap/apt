@@ -9,6 +9,7 @@ packages='
 abook
 ack-grep
 apt-file
+asciio
 autossh
 awscli
 backupninja
@@ -33,6 +34,7 @@ git-email
 git-notifier
 gnupg
 gparted
+httrack
 iceweasel
 imagemagick
 iptraf
@@ -42,13 +44,15 @@ libccid
 libimage-exiftool-perl
 maven
 mirage
-mouseemu
 mosh
+mouseemu
 mumble
 mutt-patched
 mysql-workbench
 ncmpcpp
 nmap
+nodejs
+npm
 ntp
 ntpdate
 oathtool
@@ -59,6 +63,8 @@ pcscd
 pkg-config
 pommed
 postgresql-client
+privoxy
+pry
 pv
 python-dev
 python-pip
@@ -73,8 +79,11 @@ scdaemon
 scrot
 sieve-connect
 sshfs
+ticgit
 tig
 tmux
+tudu
+tudu
 udevil
 unclutter
 urlview
