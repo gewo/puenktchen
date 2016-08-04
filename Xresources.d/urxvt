@@ -45,6 +45,10 @@ URxvt.color12: #729FCF
 URxvt.color13: #AD7FA8
 URxvt.color14: #fcaf3e
 URxvt.color15: #EEEEEC
+
+URxvt.colorIT: #A40000
+URxvt.colorBD: #4E9A06
+URxvt.colorUL: #C4A000
 ! }}}
 
 ! Perl Extensions {{{
