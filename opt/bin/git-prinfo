@@ -26,4 +26,4 @@ url=$(echo $PRINFO | jq '.html_url' | sed -e 's,",,g')
 additions=$(echo $PRINFO | jq '.additions')
 deletions=$(echo $PRINFO | jq '.deletions')
 
-echo "RFC: $title, +$additions -$deletions, $url"
+echo "RFC: $title, +$additions -$deletions, $url /cc @here"
