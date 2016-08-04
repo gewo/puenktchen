@@ -33,5 +33,5 @@ if [[ $typeit -eq 0 ]]; then
     xdotool - <<<"type --clearmodifiers -- $username"
   fi
 else
-  xdotool - <<<"type --clearmodifiers -- $(pass show "$password" | head -n 1)"
+  xdotool type --clearmodifiers "$(pass show $password | head -n 1)"
 fi
