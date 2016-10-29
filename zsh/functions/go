@@ -1,6 +1,6 @@
 # vim: ft=zsh
 # (https://gist.github.com/pjaspers/368394#comment-1016)
-PROJECT_PATHS=(~/dev ~/src)
+PROJECT_PATHS=(~/dev ~/work)
 
 function project() {
   cmd="cd"
