@@ -26,12 +26,12 @@ fi
 # unclutter &
 dunst -config ~/.dotfiles/dunstrc &
 urxvtd -q -o -f
-setxkbmap -option ctrl:nocaps
+setxkbmap -layout 'us(intl-unicode)' -option caps:ctrl_modifier
 
 # Touchpad
-synclient TapButton1=1 &
-synclient TapButton2=3 &
-synclient TapButton3=2 &
+# synclient TapButton1=1 &
+# synclient TapButton2=3 &
+# synclient TapButton3=2 &
 
 workrave &
 wicd-gtk --tray &
