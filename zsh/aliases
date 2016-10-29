@@ -123,7 +123,7 @@
   alias gcm='gc -m '
   alias gcn='gc --no-verify '
   alias gco='g checkout '
-  alias gd='g diff -M '
+  alias gd='g diff -M --color-words'
   alias gds='gd --staged '
   alias gdss='gds --stat '
   alias gfp='g fetch -p '
