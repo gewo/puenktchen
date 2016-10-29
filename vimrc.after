@@ -17,6 +17,7 @@
   " }}}
 
   " Colorscheme {{{
+    set t_Co=256
     set background=dark
     " let g:solarized_degrade=1 " gray background
     " let g:solarized_visibility = "high"
@@ -135,6 +136,10 @@
   nmap <leader>tn <esc>:tabnew<cr>
   vmap <leader>tn <esc>:tabnew<cr>
   " imap <leader>tn <esc>:tabnew<cr>i
+
+  " nmap <silent> <leader>ul :t.<CR>Vr=
+  nmap <silent> <leader>u= :t.<CR>Vr=
+  nmap <silent> <leader>u- :t.<CR>Vr-
 " }}}
 
 " Plugins {{{
