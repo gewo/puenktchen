@@ -155,9 +155,9 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
-# bindsym Shift+F3 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-# bindsym Shift+F2 exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-# bindsym Shift+F1 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym $mod+F10 exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+F9 exec pactl set-sink-volume @DEFAULT_SINK@ -- -5%
+bindsym $mod+F8 exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Mucke
 # bindsym XF86AudioPlay exec mocp -G
@@ -167,9 +167,9 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 # bindsym XF86AudioPrev exec ncmpcpp prev
 # bindsym XF86AudioNext exec ncmpcpp next
 
-# bindsym Shift+F5 exec mpc toggle
-# bindsym Shift+F4 exec mpc prev
-# bindsym Shift+F6 exec mpc next
+bindsym $mod+F6 exec mpc toggle
+bindsym $mod+F5 exec mpc prev
+bindsym $mod+F7 exec mpc next
 
 bindsym Shift+XF86AudioMute exec mpc toggle
 bindsym Shift+XF86AudioLowerVolume exec mpc prev
