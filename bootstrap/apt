@@ -42,10 +42,11 @@ jq
 keepass2
 libccid
 libimage-exiftool-perl
+libsqlite3-dev
 maven
 mirage
 mosh
-mouseemu
+mpc
 mumble
 mutt-patched
 mysql-workbench
