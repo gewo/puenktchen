@@ -231,6 +231,6 @@
   " }}}
 
   " Abbreviations {{{
-    abbreviate bp require 'pry'; binding.pry
-    abbreviate sh require 'spec_helper'RSpec.describe
+    ia bp require 'pry'; binding.pry
+    ia sh require 'spec_helper'RSpec.describe
 " }}}
