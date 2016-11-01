@@ -42,6 +42,7 @@
     alias ash='apt show '
     alias acs='apt-cache search '
     alias ai='_ apt install '
+    alias ap='apt-cache policy '
     alias au='_ apt update '
     alias adu='_ apt dist-upgrade '
   fi
@@ -67,6 +68,7 @@
 
 # Misc {{{
   # alias s='screen -U' # -d -R -S
+  alias sl='ssh-add -l'
 
   alias tc='tmux new -t dev '
 
