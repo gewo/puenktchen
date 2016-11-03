@@ -173,7 +173,7 @@
 
   " Vroom, Vimux {{{
     let g:vroom_use_vimux=1
-    let vroom_spec_command="xvfb-run bundle exec spring rspec"
+    let vroom_spec_command="xvfb-run bundle exec rspec"
     let g:vroom_use_bundle_exec=0
     " use windows instead of panes
     " let g:VimuxRunnerType = "window"
