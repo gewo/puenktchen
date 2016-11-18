@@ -35,6 +35,8 @@
 
   # Copy with progress bar. `-o` requires superuser.
   alias cpv="rsync -pghb -e /dev/null --progress -- "
+
+  alias ydl="youtube-dl --no-mtime"
 # }}}
 
 # System {{{
