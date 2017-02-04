@@ -58,6 +58,7 @@
   setopt share_history # same hist in any term
   setopt hist_ignore_all_dups
   setopt no_hist_beep
+  setopt hist_ignore_space # don’t store lines starting with space
 
   setopt no_beep
   setopt auto_cd
