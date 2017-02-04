@@ -203,7 +203,7 @@ bindsym $mod+Shift+p exec ~/opt/bin/passmenu --type
 bindsym $mod+t exec ~/opt/bin/two-factor-auth-code
 
 # no title bars by default
-new_window 1pixel
+# new_window 1pixel
 bindsym $mod+b border toggle
 
 
@@ -230,3 +230,5 @@ client.focused #859900 #859900 #fdf6e3 #859900
 client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
+
+for_window [class="VirtualBo"] floating disable
