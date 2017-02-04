@@ -7,30 +7,31 @@
 " }}}
 
 " Appearance {{{
-  " syntax enable
-  set cursorline " Highlight current line
+  " set cursorline " Highlight current line
   set showmode
   set scrolloff=3
 
-  " Ruby {{{
-    let g:ruby_indent_access_modifier_style = 'indent'
-  " }}}
-
   " Colorscheme {{{
-    set t_Co=256
     set background=dark
+    highlight clear
+
+    if exists("syntax_on")
+      syntax reset
+    endif
+
+    set t_Co=256
     " let g:solarized_degrade=1 " gray background
     " let g:solarized_visibility = "high"
     " let g:solarized_contrast = "high"
     " let g:solarized_termtrans=1
-    let g:solarized_termcolors=256
+    " let g:solarized_termcolors=256
     " solarized twilight wombat256mod ir_dark sorcerer mustang jellybeans
-    color solarized
+    color xoria256
   " }}}
 
   " Fancy colorcolumn {{{
-    execute "set colorcolumn=" . join(range(81,335), ',')
-    hi ColorColumn guibg=#2d2d2d ctermbg=233
+    " execute "set colorcolumn=" . join(range(81,335), ',')
+    " hi ColorColumn guibg=#2d2d2d ctermbg=233
   " }}}
 
   " GUI options {{{
@@ -167,6 +168,10 @@
     hi clear SignColumn
   " }}}
 
+  " Ruby {{{
+    let g:ruby_indent_access_modifier_style = 'indent'
+  " }}}
+
   " Syntastic {{{
     let g:syntastic_ruby_checkers = ['mri', 'rubocop']
   " }}}
@@ -191,7 +196,7 @@
   " }}}
 
   " ChangeHashSyntax {{{
-    map <leader>h :ChangeHashSyntax<CR>
+    " map <leader>h :ChangeHashSyntax<CR>
   " }}}
 
   " Tabular {{{
