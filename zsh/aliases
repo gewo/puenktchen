@@ -37,6 +37,7 @@
   alias cpv="rsync -pghb -e /dev/null --progress -- "
 
   alias ydl="youtube-dl --no-mtime"
+  alias ydlm="youtube-dl --no-mtime -x --audio-format mp3 --audio-quality 256K"
 # }}}
 
 # System {{{
@@ -131,7 +132,8 @@
   alias gds='gd --staged '
   alias gdss='gds --stat '
   alias gfp='g fetch -p '
-  alias gl='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" '
+  alias glp='g log --graph --pretty="format:%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" '
+  alias gl='g log'
   alias glm='gl master..HEAD '
   alias gm='g merge '
   alias gmm='g merge master '
