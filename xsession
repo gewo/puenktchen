@@ -35,5 +35,7 @@ setxkbmap -layout 'us(intl-unicode)' -option caps:ctrl_modifier
 
 workrave &
 wicd-gtk --tray &
+xfce4-power-manager &
+pasystray &
 
 exec i3
