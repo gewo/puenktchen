@@ -3,7 +3,7 @@ set -eu
 
 dirname=$(cd $(dirname "$0") && pwd)
 
-files=$(ls | grep -v 'README|make-symlinks')
+files=$(ls | egrep -v 'README|make-symlinks')
 
 for file in $files ; do
   ln -s "$dirname/$file" "$HOME/.$file"

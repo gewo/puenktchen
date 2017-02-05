@@ -1,0 +1,40 @@
+# Tests written in [yarn][].
+
+[yarn]: http://liw.fi/cmdtest/
+
+## Symlinks are created correctly
+
+Symlinks are created in $HOME, link to puenktchen repo and start with a dot:
+
+    SCENARIO symlinks are correct
+
+    GIVEN puenktchen repo
+    AND an empty HOME
+
+    WHEN symlinks are created
+    THEN symlinks are present
+
+## Implementation
+
+    IMPLEMENTS GIVEN puenktchen repo
+    rm -rf "$DATADIR/puenktchen"
+    mkdir "$DATADIR/puenktchen"
+    # only copy few files:
+    cp -r "$SRCDIR/i3" "$DATADIR/puenktchen"
+    cp -r "$SRCDIR/zshrc" "$DATADIR/puenktchen"
+    cp -r "$SRCDIR/make-symlinks" "$DATADIR/puenktchen"
+
+    IMPLEMENTS GIVEN an empty HOME
+    rm -rf "$DATADIR/home"
+    mkdir "$DATADIR/home"
+    export HOME="$DATADIR/home"
+
+    IMPLEMENTS WHEN symlinks are created
+    export HOME="$DATADIR/home"
+    cd "$DATADIR/puenktchen"
+    ./make-symlinks
+
+    IMPLEMENTS THEN symlinks are present
+    export HOME="$DATADIR/home"
+    [ "$(readlink -f "$HOME/.i3")" = "$DATADIR/puenktchen/i3" ]
+    [ "$(readlink -f "$HOME/.zshrc")" = "$DATADIR/puenktchen/zshrc" ]

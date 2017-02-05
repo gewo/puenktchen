@@ -4,6 +4,14 @@ My dotfiles hideaway.
 
 ## Install
 
-```sh
-bash -c "$(curl -fsSL https://git.ctr.lc/puenktchen/plain/bin/bootstrap)"
+```
+git clone https://git.ctr.lc/puenktchen
+cd puenktchen
+./make-symlinks
+```
+
+## Run tests
+
+```
+docker-compose run tests
 ```
