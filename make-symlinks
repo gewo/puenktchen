@@ -3,6 +3,8 @@ set -eu
 
 dirname=$(cd $(dirname "$0") && pwd)
 
+cd $dirname
+
 files=$(ls | egrep -v 'README|make-symlinks')
 
 for file in $files ; do
