@@ -176,7 +176,7 @@ bindsym Shift+XF86AudioLowerVolume exec mpc prev
 bindsym Shift+XF86AudioRaiseVolume exec mpc next
 
 # lock screen
-bindsym $mod+Ctrl+l exec lockme
+bindsym $mod+Ctrl+l exec i3lock -c 222222
 
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/shots/'
 
