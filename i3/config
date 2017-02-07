@@ -180,6 +180,9 @@ bindsym $mod+Ctrl+l exec i3lock -c 222222
 
 bindsym Print exec scrot '%Y-%m-%d-%T_$wx$h_scrot.png' -e 'mv $f ~/Pictures/shots/'
 
+bindsym $mod+F11 exec setxkbmap -layout 'us(intl-unicode)' -option caps:ctrl_modifier
+bindsym $mod+Shift+F11 exec setxkbmap -layout 'us(colemak)' -option caps:ctrl_modifier
+
 # Scratchpad
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
