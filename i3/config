@@ -214,6 +214,7 @@ bar {
   status_command i3status
   # status_command i3status | ~/opt/bin/i3wrapper.pl
   # status_command ~/opt/bin/i3statuswrapper
+  tray_output primary
   colors {
     separator #dc322f
     background #002b36
