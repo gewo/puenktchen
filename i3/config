@@ -205,6 +205,8 @@ bindsym $mod+Ctrl+p exec ~/opt/bin/passmenu --user
 bindsym $mod+Shift+p exec ~/opt/bin/passmenu --type
 bindsym $mod+t exec ~/opt/bin/two-factor-auth-code
 
+bindsym $mod+Ctrl+b exec ~/opt/bin/bukuadd
+
 # no title bars by default
 # new_window 1pixel
 bindsym $mod+b border toggle
