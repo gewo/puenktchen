@@ -1,41 +1,20 @@
-#!/usr/bin/env zsh
-# vim: foldmarker={{{,}}} foldlevel=0 foldmethod=marker
+#!/usr/bin/env bash
 
-# XRandr {{{
-  XRANDR_CONF=$(xrandr -q)
-  grep '^VGA1 connected' $XRANDR_CONF
-  VGA=$?
-  grep '^HDMI1 connected' $XRANDR_CONF
-  HDMI1=$?
-
-  if [ $VGA ] && [ $HDMI1 ] ; then
-    xrandr --output HDMI1 --mode 1920x1080 --left-of VGA1
-  fi
-# }}}
+[ -r ~/.screenlayout/mobile.sh ] && source ~/.screenlayout/mobile.sh
 
 for resource in ~/.Xresources.d/* ; do
   [ -r $resource ] && xrdb -merge $resource
 done
 
-# eval $(dbus-launch --sh-syntax --exit-with-session)
-
-if [ -r "$HOME/.fehbg" ]; then
-  eval $(cat $HOME/.fehbg)
-fi
-
-# unclutter &
+[ -r "$HOME/.fehbg" ] && eval $(cat $HOME/.fehbg)
+setxkbmap -layout 'us(intl-unicode)' -option caps:ctrl_modifier
+xcape -e 'Shift_L=parenleft;Shift_R=parenright;Caps_Lock=Escape'
+unclutter &
 dunst -config ~/.dotfiles/dunstrc &
 urxvtd -q -o -f
-setxkbmap -layout 'us(intl-unicode)' -option caps:ctrl_modifier
-
-# Touchpad
-# synclient TapButton1=1 &
-# synclient TapButton2=3 &
-# synclient TapButton3=2 &
-
 workrave &
 wicd-gtk --tray &
 xfce4-power-manager &
 pasystray &
-
+redshift -l 11:52 &
 exec i3
