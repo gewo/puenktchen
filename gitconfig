@@ -2,13 +2,12 @@
   email = g@ctr.lc
   name = Gebhard Woestemeyer
 [push]
-  ; default = simple
   default = current
 [color]
   ui = true
 [alias]
   ; http://stackoverflow.com/questions/5188320/
-  recent-branches = !git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+  recent-branches = !git for-each-ref --count=10 --sort=-committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
   ; http://stackoverflow.com/a/5188364
   recent = !git for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
