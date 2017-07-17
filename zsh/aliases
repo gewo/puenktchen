@@ -137,7 +137,7 @@
   alias gl='g log'
   alias glm='gl master..HEAD '
   alias gm='g merge '
-  alias gmm='g merge master '
+  alias gmm='g merge --no-edit master '
   alias gp='g pull '
   alias gpo='gpu -u origin $(git current-branch) '
   alias gpr='gp --rebase '
@@ -164,7 +164,6 @@
 # }}}
 
 # Capistrano {{{
-  alias c='be cap '
   alias cpd='c production deploy '
   alias cpc='c production rails:console '
   alias cpl='c production logs '
@@ -184,6 +183,10 @@
   alias drmia='d rmi $(di -q) '
 
   alias fig='docker-compose '
+  alias c='docker-compose '
+  alias cl='docker-compose logs -f --tail=20'
+
+  alias ctop='docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 # }}}
 
 # Hamster {{{
