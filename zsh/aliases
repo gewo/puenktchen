@@ -22,7 +22,6 @@
   alias grep='grep --color '
   alias psg='ps aux | grep '
   alias ka='killall '
-  alias k='kill '
 
   alias _='sudo '
 
@@ -124,7 +123,8 @@
   alias gc='g commit -v '
   alias gca='gc --amend '
   alias gcan='gca --no-verify --no-edit '
-  alias gcm='gc -m '
+  # alias gcm='overcommit git commit -m '
+  alias gcm='git commit -m '
   alias gcn='gc --no-verify '
   alias gco='g checkout '
   alias gcom='g checkout master'
@@ -144,6 +144,9 @@
   alias gprm='gp --rebase origin master '
   alias gpu='g push '
   alias gr='g recent-branches '
+  alias grim='g rebase -i origin/master'
+  alias greh='g reset --hard'
+  alias gre='g reset'
   alias grv='g remote -v'
   alias gsa='g stash apply '
   alias gsl='g stash list '
@@ -189,11 +192,15 @@
   alias ctop='docker run -ti --name ctop --rm -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest'
 # }}}
 
-# Hamster {{{
-  alias h='hamster '
-  alias hl='h list '
-  alias hs='h stop '
-  alias hw='h start '
+# kubernetes {{{
+  # https://kubernetes.io/docs/user-guide/kubectl-cheatsheet/
+  source <(kubectl completion zsh)
+  alias -g AN=' --all-namespaces '
+  alias -g KS=' -n kube-system '
+  alias k='kubectl '
+  alias ksc='k config set current-context'
+  alias kl='k logs -f '
+  alias kw='k get po -w'
 # }}}
 
 # Toggl (https://github.com/drobertadams/toggl-cli) {{{
