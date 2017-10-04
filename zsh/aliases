@@ -166,6 +166,14 @@
     git fetch $upstream $branch:$branch
   }
 
+  # easily add my own git server as origin
+  function gag() {
+    repo=${REPO:-$(basename $PWD)}
+    if git remote | grep -q origin; then
+      git remote rename origin upstream
+    fi
+    git remote add origin git:$repo
+  }
 # }}}
 
 # Capistrano {{{
