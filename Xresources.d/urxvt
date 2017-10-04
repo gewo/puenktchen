@@ -72,7 +72,7 @@ URxvt.perl-ext-common: default,url-select,clipboard,keyboard-select
 ! url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.button: 2
-URxvt.url-select.launcher: firefox -new-tab
+URxvt.url-select.launcher: x-www-browser
 URxvt.url-select.autocopy: true
 URxvt.url-select.underline: true
 
