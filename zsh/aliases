@@ -217,6 +217,12 @@
   # alias t='toggl'
 # }}}
 
+# react, node
+alias y='yarn '
+alias ys='y start --reset-cache'
+alias rn='react-native '
+alias rna='rn run-android '
+
 # gewo/living-in-a-box {{{
   alias ds="dev shell "
   alias dr="dev run "
