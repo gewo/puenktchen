@@ -95,12 +95,12 @@
   source ~/.zsh/functions/web_search
   # source ~/.zsh/functions/mandelbrot
 
+  # source private .zsh/private
+  [ -r ~/.zsh/private ] && source ~/.zsh/private
+
   source ~/.zsh/prompt
   source ~/.zsh/aliases
   source ~/.zsh/keybindings
   source ~/.zsh/completions
   source ~/.zsh/keychain
-
-  # source private .zsh/private
-  [ -r ~/.zsh/private ] && source ~/.zsh/private
 # }}}
