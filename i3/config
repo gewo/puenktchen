@@ -194,7 +194,8 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+n bar mode toggle
 
 # move workspace to other monitor
-bindsym $mod+o move workspace to output down
+# bindsym $mod+o move workspace to output down
+bindsym $mod+o move workspace to output left
 
 # invert colors
 bindsym $mod+i exec xcalib -i -a
@@ -204,12 +205,13 @@ bindsym $mod+p exec ~/opt/bin/passmenu
 bindsym $mod+Ctrl+p exec ~/opt/bin/passmenu --user
 bindsym $mod+Shift+p exec ~/opt/bin/passmenu --type
 bindsym $mod+t exec ~/opt/bin/two-factor-auth-code
+bindsym $mod+b exec buku_run
 
 bindsym $mod+Ctrl+b exec ~/opt/bin/bukuadd
 
 # no title bars by default
 # new_window 1pixel
-bindsym $mod+b border toggle
+bindsym $mod+Shift+b border toggle
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -237,4 +239,5 @@ client.focused_inactive #073642 #073642 #eee8d5 #6c71c4
 client.unfocused #073642 #073642 #93a1a1 #586e75
 client.urgent #d33682 #d33682 #fdf6e3 #dc322f
 
-for_window [class="VirtualBo"] floating disable
+# for_window [class="VirtualBo"] floating disable
+for_window [workspace="9"] floating enable
