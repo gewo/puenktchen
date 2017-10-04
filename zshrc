@@ -3,8 +3,8 @@
 # zshrc of Gebhard Woestemeyer <g.woestemeyer@gmail.com>
 
 # Environment {{{
-  HISTSIZE=20000
-  SAVEHIST=20000
+  HISTSIZE=1000000
+  SAVEHIST=1000000
   HISTFILE=~/.zsh/zhistory
 
   export CLICOLOR=yepp # osx ls
