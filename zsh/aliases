@@ -228,9 +228,12 @@
 
 # react, node
 alias y='yarn '
+alias yi='y install'
 alias ys='y start --reset-cache'
 alias rn='react-native '
 alias rna='rn run-android '
+alias rnl='rn log-android '
+alias cdapk='cd android/app/build/outputs/apk'
 
 # gewo/living-in-a-box {{{
   alias ds="dev shell "
