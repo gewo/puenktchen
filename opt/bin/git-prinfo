@@ -2,7 +2,7 @@
 
 [ -n "$DEBUG" ] && set -x
 PRNR=$1
-REPO=${REPO:-$(git remote -v | grep origin | grep github | head -n 1 | sed -n -e 's/.*github.com:\([^.]*\)\.git.*/\1/p')}
+REPO=${REPO:-$(git remote -v | grep origin | grep github | head -n 1 | sed -n -e 's/.*github.com:\([^. ]*\).*$/\1/p')}
 
 if [ -z "$GITHUB_TOKEN" ]; then
   echo "I need a GITHUB_TOKEN env var."
@@ -26,4 +26,4 @@ url=$(echo $PRINFO | jq '.html_url' | sed -e 's,",,g')
 additions=$(echo $PRINFO | jq '.additions')
 deletions=$(echo $PRINFO | jq '.deletions')
 
-echo "RFC: $title, +$additions -$deletions, $url /cc @here"
+echo "RFC: $title, +$additions -$deletions, $url /cc @channel"
